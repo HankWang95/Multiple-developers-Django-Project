@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}题目列表{% endblock %}
+{% block js %}
+    <style>
+        .mar{
+        margin: 10px 0px;
+    }
+    .bo{
+        width: 500px;
+        background-color: #1A9CC1;
+        border-radius: 20px;
+        padding: 10px 30px;
+    }
+    .h{
+        color: #1A9CC1;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+<div style="color: white">
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">题目名</h4>
+        </div>
+        <div class="bo">
+            {{ problem.number }}.   {{ problem.name }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">题目类型</h4>
+        </div>
+        <div class="bo">
+            {{ problem.tag }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">题目描述</h4>
+        </div>
+        <div class="bo">
+            {{ problem.description }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">输入描述</h4>
+        </div>
+        <div class="bo">
+            {{ problem.input_description }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">输出描述</h4>
+        </div>
+        <div class="bo">
+            {{ problem.output_description }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">输入样例</h4>
+        </div>
+        <div class="bo">
+            {{ problem.input_sample }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">输出样例</h4>
+        </div>
+        <div class="bo">
+            {{ problem.output_sample }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">时间限制</h4>
+        </div>
+        <div class="bo">
+            {{ problem.time }}
+        </div>
+    </div>
+    <div class="mar">
+        <div class="mar">
+            <h4 class="h">内存限制</h4>
+        </div>
+        <div class="bo">
+            {{ problem.memory }}
+        </div>
+    </div>
+    <div style="text-align: center">
+    <a href="{% url 'commit' problem.id %}"><button>编写代码</button></a>
+    <a href="{% url 'add_case' problem.id %}"><button>添加测试样例</button></a>
+</div>
+</div>
+
+
+{% endblock %}

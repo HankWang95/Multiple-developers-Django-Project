@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}添加课程{% endblock %}
+{% block js %}
+
+<style>
+  .incenter{
+         -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        background-color: white;
+        opacity: 0.9;
+        padding: 30px;
+            margin: auto;
+        position: relative;
+        top: 40px;
+        display:inline-block;
+          *display:inline;
+          *zoom:1;
+        }
+      td{
+        padding: 5px 5px;
+        }
+</style>
+{% endblock %}
+{% block content %}
+<div class="incenter">
+  <h1>请填写课程信息</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+          <tr>
+              <td>
+                  课程名：
+              </td>
+              <td>
+                  {{ form.name }}
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  所在集：
+              </td>
+              <td>
+                  {{ form.number }}
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  请上传mp4格式文件：
+              </td>
+              <td>
+                  {{ form.post_attachment }}
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  请上传附件：
+              </td>
+              <td>
+                  {{ form.post_file }}
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2" style="text-align: center">
+                  <input type="submit" value="上传" style="width:120px">
+              </td>
+          </tr>
+      </table>
+
+  </form>
+{% endblock %}

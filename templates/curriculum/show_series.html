@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}加入新系列{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin: 0px 15px">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="thumbnail">
+                <img src="/static/curriculum/image/qwe.jpg">
+            </div>
+        </div>
+        <div class="col-lg-5">
+            {% if joined %}
+            <h3>{{ series.name }}</h3>
+            <div style="width: 400px">
+                授课教师：
+                <span>
+                    {{ series.owner.username }}
+                </span>
+                <br/>
+                <p style="word-wrap:break-word; word-break:normal;">
+                    {{ series.information }}
+                </p>
+                <div>
+                    <span style="border:1px solid #ccc;">
+                        {{ series.tag }}
+                    </span>
+                </div>
+            </div>
+            已加入学习&nbsp;&nbsp;
+            <a href="{% url 'my_series' series.id %}"><button>开始学习</button></a>
+
+            {% else %}
+            未加入学习&nbsp;&nbsp;
+            <a href="{% url 'join_series' series.id %}"><button>加入学习</button></a>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

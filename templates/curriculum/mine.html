@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}系列信息{% endblock %}
+ {% block js %}
+{% load static %}
+
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+<style>
+    .incenter{
+         -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        background-color: white;
+        opacity: 0.9;
+        padding: 30px;
+            margin: auto;
+        position: relative;
+        top: 180px;
+        display:inline-block;
+          *display:inline;
+          *zoom:1;
+        }
+</style>
+{% endblock %}
+{% block content %}
+<div class="incenter">
+{% if who == 'teachers' %}
+<a href="{% url 'my_series_list' %}"><button>我的系列课程</button></a>
+
+{% else %}
+<a href="{% url 'my_series_list' %}"><button>我参加的系列课程</button></a>
+
+{% endif %}
+<a href="{% url 'user_info' %}"><button>个人信息</button></a>
+
+{% for i in list %}
+<a href="{% url 'play' i.series.id %}">{{ i.name }}</a>
+{% endfor %}
+</div>
+{% endblock %}

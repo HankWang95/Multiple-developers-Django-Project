@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}加入新系列{% endblock %}
+ {% block js %}
+{% load static %}
+
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+<style>
+  .incenter{
+         -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        background-color: white;
+        opacity: 0.9;
+        padding: 30px;
+            margin: auto;
+        position: relative;
+        top: 40px;
+        display:inline-block;
+          *display:inline;
+          *zoom:1;
+        }
+      td{
+        padding: 5px 5px;
+        }
+</style>
+{% endblock %}
+{% block content %}
+<div class="incenter">
+    <h1>请填写系列信息</h1>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td>
+                    系列名：
+                </td>
+                <td>
+                    {{ form.name }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    系列种类：
+                </td>
+                <td>
+                    {{ form.kind }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    系列介绍：
+                </td>
+                <td>
+                    {{ form.introduce }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    系列标签：
+                </td>
+                <td>
+                    {{ form.tag }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <button type="submit">确认</button>
+                </td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

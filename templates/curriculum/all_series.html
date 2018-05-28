@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}所有课程列表{% endblock %}
+ {% block js %}
+{% load static %}
+
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid" style="margin: 0px 15px">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 30px">
+                    {% for i in kind_list %}
+                        <button type="button" class="btn btn-default">{{ i.name }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% if editor %}
+
+            {% for i in series_list %}
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="thumbnail">
+              <img src="/static/curriculum/image/qwe.jpg">
+              <div class="caption">
+                <h3>{{ i.name }}</h3>
+                <p>{{ i.information }}</p>
+                <p><a href="{% url 'editor_cur_list' i.id %}" class="btn btn-primary" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+
+            {% endfor %}
+
+            {% else %}
+        {% for i in series_list %}
+          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="thumbnail">
+              <img src="/static/curriculum/image/qwe.jpg">
+              <div class="caption">
+                <h3>{{ i.name }}</h3>
+                <p>{{ i.information }}</p>
+                <p><a href="{% url 'show_series' i.id %}" class="btn btn-primary" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

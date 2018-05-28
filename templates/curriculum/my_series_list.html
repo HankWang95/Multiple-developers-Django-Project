@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}我的系列课程{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid" style="margin: 0px 15px">
+    <div class="row">
+        <div class="col-lg-12">
+             {% if not add %}
+            <h3>我参加的课程</h3>
+            {% else %}
+             <h3>我发布的课程</h3>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        {% for i in list %}
+          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              {% if not add %}
+                  <a href="{% url 'show_series' i.id %}" style="display:block;text-decoration:none;">
+                  {% else %}
+                    <a href="{% url 'my_series' i.id %}" style="display:block;text-decoration:none;">
+                  {% endif %}
+                    <div class="thumbnail">
+                      <img src="/static/curriculum/image/qwe.jpg">
+                      <div class="caption">
+                        <h3>{{ i.name }}</h3>
+                          <span style="border:1px solid #ccc;">
+                                {{ i.tag }}
+                            </span>
+                        <p>{{ i.information }}</p>
+                  <p>详情</p>
+              </div>
+            </div>
+                </a>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {% if add %}
+            <a href="{% url 'add_series' %}"><button>新建系列课程</button></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

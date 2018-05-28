@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}播放界面{% endblock %}
+{% block js %}
+
+
+{% load static %}
+
+<script src="{% static "curriculum/jquery-3.3.1.js" %}"></script>
+<style>
+    textarea{
+        width: 750px;
+        height: 50px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+    .radi{
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+</style>
+<script>
+
+
+function loadXMLDoc(id)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("play").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","/play_ajax_obj/"+id,true);
+xmlhttp.send();
+}
+
+$(document).ready(function(){
+        var id={{ series_id }}
+        $("#jd_book").load('/jd_book/'+id);
+});
+
+</script>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+
+{% endblock %}

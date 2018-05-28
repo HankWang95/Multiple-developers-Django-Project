@@ -1,0 +1,13 @@
+{% block content %}
+
+{% block title %}
+编译错误<br>
+错误信息如下：<br>
+{% endblock %}
+
+{% for i in list %}
+{{ i }}
+<br>
+{% endfor %}
+
+{% endblock %}

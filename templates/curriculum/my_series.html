@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}系列信息{% endblock %}
+ {% block js %}
+{% load static %}
+
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin: 0px 15px">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="thumbnail">
+                <img src="/static/curriculum/image/qwe.jpg">
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <h3>{{ series.name }}</h3>
+            <div style="width: 400px">
+                授课教师：
+                <span>
+                    {{ series.owner.username }}
+                </span>
+                <br/>
+                <p style="word-wrap:break-word; word-break:normal;">
+                    {{ series.information }}
+                </p>
+                <div>
+                    <span style="border:1px solid #ccc;">
+                        {{ series.tag }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-11">
+            {% for i in list %}
+            <a href="{% url 'play' i.series.id %}"><button style="width: 180px;height:40px">{{ i.name }}</button></a>
+            <br/>
+            {% endfor %}
+            {% if add %}
+            <a href="{% url 'add_curriculum' series.id %}"><button style="width: 180px;height:40px">添加课程</button></a>
+            {% endif %}
+            <br/>
+            <a href="{% url 'problem_list' series.id %}"><button style="width: 180px;height:40px">题目列表</button></a>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

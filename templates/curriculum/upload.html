@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        {{ form.as_p }}
+      {% if form.error is not None %}
+      {% for error in form.error %}
+      {{ error }}
+      {% endfor %}
+      {% endif %}
+   <br/>
+   <input type="submit" value="upload"/>
+  </form>
+
+{% endblock %}

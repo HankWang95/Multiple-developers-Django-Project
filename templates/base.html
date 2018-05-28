@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    {% include 'head.html' %}
+    <title>{% block title %}欢迎光临 - hankwang{% endblock %}</title>
+    {% block js %}{% endblock %}
+
+    <meta charset="UTF-8">
+    {% block style %}
+    <style type="text/css">
+        body{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+            background-image: url(/static/curriculum/image/000.jpg);
+            background-repeat: repeat;
+        }
+        td,th{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+        }
+        html,body,div,ul,
+        img{
+            padding: 0;
+            margin: 0;
+        }
+        .nav1{
+            height: 46px;
+            width: 100%;
+            line-height: 30px;
+            padding-left: 20px;
+
+            background-color: #0f0f0f;
+        }
+        section{
+            min-height: 600px;
+        }
+
+        .center{
+            width: 100%;
+            display: -webkit-flex;
+           -webkit-justify-content: center;
+           -webkit-align-items: center;
+        }
+        input{
+            width: 180px;
+            height: 35px;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    {% include 'navbar.html' %}
+<div class="center">
+              {% block content %}
+
+              {% endblock %}
+</div>
+    <div style="height: 50px">
+
+    </div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid" style="padding: 0 47%">
+      <div style="width: 80px">
+          版权所有
+      </div>
+  </div>
+</nav>
+</body>
+{% block downjs %}{% endblock %}
+</html>

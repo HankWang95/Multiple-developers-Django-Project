@@ -1,0 +1,14 @@
+
+
+{% for obj in obj_list %}
+<div class="col-lg-2">
+    <a href="{{ obj.href }}">
+        <div class="thumbnail">
+      <img src="{{ obj.img }}">
+          <div class="caption">
+            <p style="font-size: 12px;height: 50px;overflow: hidden;">{{ obj.title }}</p>
+          </div>
+    </div>
+    </a>
+</div>
+{% endfor %}

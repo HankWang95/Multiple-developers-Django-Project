@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% ifequal flag 'COMPILE_ERROR' %}
+
+{% block title %}
+编译错误<br>
+错误信息如下：<br>
+{% endblock %}
+
+{% for i in list %}
+{{ i }}
+<br>
+{% endfor %}
+{% endifequal %}
+
+{% ifequal flag 'WRONG_ANSWER' %}
+答案错误<br>
+{% endifequal %}
+
+{% ifequal flag 'TIME_LIMIT_EXCEEDED' %}
+超时<br>
+{% endifequal %}
+
+{% ifequal flag 'MEMORY_LIMIT_EXCEEDED' %}
+内存溢出<br>
+{% endifequal %}
+
+{% ifequal flag 'ACCEPTED' %}
+评判通过<br>
+{% endifequal %}
+
+
+{% endblock %}

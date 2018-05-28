@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}题目列表{% endblock %}
+{% block js %}
+    <script src="static/curriculum/static/js/jquery-3.3.1.min.js"></script>
+    <style>
+         .a1{
+            display:block; /* 把行内元素 变成 块级元素 */
+            width:50px; /* 盒子 宽度 */
+            height:30px; /* 盒子 高度 */
+            text-decoration:none;
+        }
+         .a2{
+             display:block; /* 把行内元素 变成 块级元素 */
+             width:400px; /* 盒子 宽度 */
+             height:30px; /* 盒子 高度 */
+             text-decoration:none;
+         }
+         .a3{
+             display:block; /* 把行内元素 变成 块级元素 */
+             width:70px; /* 盒子 宽度 */
+             height:30px; /* 盒子 高度 */
+             text-decoration:none;
+         }
+         .tab001{
+             text-align: center;
+             color: #fff;
+         }
+        .tbrow{
+            display: none;
+        }
+        .tab002{
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function(){
+            //tr:eq(0)是指第一个tr eq=equal
+            //tr:gt(0)是指除去第一个以外的所有tr gt=grater than
+            $("tr:eq(0)").css("background-color","#1A9CC1"); //标题的样式
+            $("tr:gt(0):even").css("background-color","#fff"); //奇数行的样式
+            $("tr:gt(0):odd").css("background-color","#D7EBFF"); //偶数行的样式
+            $("tr:gt(0)").mouseenter(function(){
+                var color = $(this).css("background-color");
+                $(this).css("background-color","#99c1ff");
+                $(this).mouseleave(function(){
+                    $(this).css("background-color",color);
+                });
+                $(this).mousedown(function(){
+                    $(this).css("background-color","#4d93ff");
+                });
+                $(this).mouseup(function(){
+                    $(this).css("background-color","#99c1ff");
+                });
+            });
+        });
+        $(function(){
+            $("#dwad").click(function(){
+                if($('td[name=\'row3\']').hasClass("tabrow"))
+                    $('td[name=\'row3\']').removeClass("tabrow");
+                else
+                    $('td[name=\'row3\']').addClass("tabrow");
+            });
+        })
+    </script>
+{% endblock%}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <table>
+                <tr class="tab001" style="color: white;">
+                    <td>
+                            编号
+                    </td>
+                    <td>
+                            题目
+                    </td>
+                    {% if add %}
+                    <td name="row3" class="tabrow">
+                        删除题目
+                    </td>
+                    {% endif %}
+                </tr>
+                {% for i in list %}
+                <tr class="tab002">
+                    <td>
+                        <a href="{% url 'problem_show' i.id %}" class="a1">
+                            {{ i.number }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'problem_show' i.id %}" class="a2">
+                            {{ i.name }}
+                        </a>
+                    </td>
+                    {% if add %}
+                    <td name="row3" class="tabrow">
+                        <a href = "{% url 'problem_delete' i.id %}" class="a3">
+                            删除题目
+                        </a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    {% if add %}
+    <div class="row">
+            <div class="col-lg-12" style="text-align: center">
+                <a href="{% url 'add_problem' series %}"><button>增加题目</button></a>
+            </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

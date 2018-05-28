@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% block title %}欢迎光临首页{% endblock %}
+ {% block js %}
+{% load static %}
+
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+
+{% endblock %}
+{% block style %}
+
+<style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+            background-image: url(/static/curriculum/image/000.jpg);
+            background-repeat: repeat;
+        }
+        ul{
+            list-style: none;
+        }
+        #imgs img{
+            display: block;
+            width: 100%;
+            height: 500px;
+        }
+        #container{
+            width: 100%;
+            height: 500px;
+            margin: 0px;
+            position: relative;
+        }
+        #imgs img{
+            display: none;
+        }
+        #imgs .selected{
+            display: block;
+        }
+        #tab{
+            position: absolute;
+            right: 44%;
+            bottom: 10px;
+            cursor: pointer;
+        }
+        #tab li , #rows span{
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            float: left;
+            text-align: center;
+            line-height: 20px;
+        }
+        #tab .selected{
+            background-color: #eea236;
+        }
+        #rows{
+            cursor: pointer;
+            position: absolute;
+            left: 10px;
+            bottom: 20px;
+            display: none;
+        }
+        #move
+        {
+            position:relative;
+            animation:mymove 10s infinite;
+            -webkit-animation:mymove 10s infinite; /* Safari and Chrome */
+        }
+
+        @keyframes mymove
+        {
+            0%   {top:0px;}
+            5%  {top:-80px;}
+            9%  {top:-10px;}
+            12%  {top:-40px;}
+            100% {top:-40px;}
+        }
+
+        @-moz-keyframes mymove /* Firefox */
+        {
+            0%   {top:0px;}
+            5%  {top:-200px;}
+            9%  {top:-160px;}
+            12%  {top:-180px;}
+            100% {top:-180px;}
+        }
+
+        @-webkit-keyframes mymove /* Safari 和 Chrome */
+        {
+            0%   {top:0px;}
+            5%  {top:-200px;}
+            9%  {top:-160px;}
+            12%  {top:-180px;}
+            100% {top:-180px;}
+        }
+        @-o-keyframes mymove /* Opera */
+        {
+            0%   {top:0px;}
+            5%  {top:-200px;}
+            9%  {top:-160px;}
+            12%  {top:-180px;}
+            100% {top:-180px;}
+        }
+        #mov{
+            position: absolute;
+            top: 420px;
+            float: right;
+            right: 50px;
+        }
+        .imaa{
+            display: none;
+        }
+        .ima1{
+        }
+        .ima2{
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div id="container" style="position: relative;top: -20px">
+    <div id="imgs" style="width: 100%" class="imaa ima1">
+        <img src="/static/curriculum/image/001.png" class="selected">
+        <img src="/static/curriculum/image/002.png">
+        <img src="/static/curriculum/image/003.png">
+        <img src="/static/curriculum/image/004.png">
+        <img src="/static/curriculum/image/005.png">
+    </div>
+    <div id="imgs" style="width: 100%" class="imaa ima2">
+        <img src="/static/curriculum/image/001.png" class="selected">
+        <img src="/static/curriculum/image/002.png">
+        <img src="/static/curriculum/image/003.png">
+        <img src="/static/curriculum/image/004.png">
+        <img src="/static/curriculum/image/005.png">
+    </div>
+    <ul id="tab">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div id="rows">
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+</div>
+<div id="mov">
+    <div id="move">
+        <img src="/static/curriculum/image/006.png" style="width: 300px">
+
+    </div>
+</div>
+{% endblock %}
+{% block downjs %}
+<script>
+    var wid = window.screen.width;
+        if (wid>640){
+            $('.ima1').removeClass("imaa");
+        }else{
+            $('.ima2').removeClass('imaa');
+        }
+    let oTab=document.getElementById("tab");
+    let aLi=oTab.getElementsByTagName("li");
+    let oImgs=document.getElementById("imgs");
+    let aImg=oImgs.getElementsByTagName("img");
+    let oPrev=document.getElementById("prev");
+    let oNext=document.getElementById("next");
+    let oContainer=document.getElementById("container");
+    let iNowIndex=0;
+    for(let i=0;i<aLi.length;i++){
+        aLi[i].index=i;
+        aLi[i].onmouseover=function () {
+            iNowIndex=aLi[i].index;
+            for(let i=0;i<aLi.length;i++){
+                aLi[i].className="";
+                aImg[i].className="";
+            }
+            aLi[i].className="selected";
+            aImg[this.index].className="selected"
+        }
+    }
+    oPrev.onclick = oNext.onclick=function () {
+        if(this === oPrev){
+            iNowIndex--;
+            if(iNowIndex == -1){
+                iNowIndex=aLi.length-1;
+            }
+        }else{
+            iNowIndex++;
+            if(iNowIndex==aLi.length){
+                iNowIndex=0;
+            }
+        }
+        for(let i=0;i<aLi.length;i++){
+            aLi[i].className="";
+            aImg[i].className=""
+        }
+        aLi[iNowIndex].className="selected";
+        aImg[iNowIndex].className="selected";
+    };
+    oNext.onselectstart=oPrev.onselectstart=function () {
+        return false;
+    };
+    let timer=setInterval(function () {
+        oNext.onclick();
+    },1000)
+    oContainer.onmouseover=function () {
+        clearInterval(timer);
+
+    }
+    oContainer.onmouseout=function () {
+        timer=setInterval(function () {
+            oNext.onclick()
+        },1000
+        )
+
+    }
+</script>
+{% endblock %}
