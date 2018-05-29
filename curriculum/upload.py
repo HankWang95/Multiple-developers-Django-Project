@@ -18,7 +18,6 @@ def handle_uploaded_file(f, file_name, series):
     with open(os.path.join(outpath, file_name), 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-    print(outpath)
     return os.path.join(outpath, file_name)
 
 
@@ -50,9 +49,7 @@ def add_curriculum_view(request, series):
                     file_name=request.FILES['post_attachment'].name,
                     series=series.name)
             new_curriculum.save()
-            print("saved!")
             return redirect('my_series',series.id)
-        print(form)
         return redirect('add_curriculum',series.id)
     else:
         form = AddCurriculumForm()
