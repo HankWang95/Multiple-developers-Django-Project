@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from .info_forms import StudentInfoForm, TeacherInfoForm
 from .models import StudentInfo, TeacherInfo
+from django.contrib.auth.decorators import login_required
+
 
 
 # 用户的个人信息展示界面
+@login_required
 def user_info_view(request):
     if Group.objects.get(user=request.user).name == 'students':
         try:
@@ -21,6 +24,7 @@ def user_info_view(request):
 
 
 # 用户的详细信息填写界面
+@login_required
 def info_fill_view(request):
     if request.method == 'POST':
         if Group.objects.get(user=request.user).name == 'teachers':
