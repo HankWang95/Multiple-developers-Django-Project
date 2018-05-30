@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import AddCurriculumForm, AddSeriesForm
 from .models import Series
 from django.contrib.auth.decorators import permission_required
+from django.core.files.base import ContentFile
 import os
 # Create your views here.
 
@@ -61,11 +62,13 @@ def add_curriculum_view(request, series):
 @permission_required('curriculum.upload_file',login_url='/')
 def add_series_view(request):
     if request.method == 'POST':
-        form = AddSeriesForm(request.POST)
+        form = AddSeriesForm(request.POST, request.FILES or None)
+        # file_content = ContentFile(request.FILES['img'].read())
         if form.is_valid():
             new_series = form.save(commit=False)
             new_series.owner = request.user
             new_series.path = os.path.join(PASSED_DIR, form.cleaned_data['name'])
+            new_series.img = form.cleaned_data['img']
             if not os.path.exists(new_series.path):  # 判断是否存在文件或目录
                 os.makedirs(new_series.path)
             new_series.save()

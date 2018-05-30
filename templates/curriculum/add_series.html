@@ -28,7 +28,7 @@
 {% block content %}
 <div class="incenter">
     <h1>请填写系列信息</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>
@@ -60,6 +60,15 @@
                 </td>
                 <td>
                     {{ form.tag }}
+                </td>
+            </tr>
+            <tr>
+                <tr>
+                <td>
+                    系列封面图：
+                </td>
+                <td>
+                    {{ form.img }}
                 </td>
             </tr>
             <tr>

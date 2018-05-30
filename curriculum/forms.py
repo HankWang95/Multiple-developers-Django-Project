@@ -10,13 +10,14 @@ class AddCurriculumForm(ModelForm):
 
     class Meta:
         model = UnauditedCurriculum
-        fields = ['name', 'number']
+        fields = ['name', 'number', 'introduce']
 
 
 
 
 # 添加系列课程表单
 class AddSeriesForm(ModelForm):
+    img = forms.ImageField(label='请上传图片文件作为系列的封面图',required=False)
 
     class Meta:
         model = Series

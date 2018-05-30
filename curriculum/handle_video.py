@@ -68,7 +68,8 @@ def save_new_cur(cur_id, out_path):
         editor=cur.editor,
         created_time=cur.created_time,
         path=out_path,
-        img=os.path.join(out_path,'screenshots/shots.jpg')
+        img=os.path.join(out_path,'screenshots/shots.jpg'),
+        introduce=cur.introduce
 
     )
     new_cur.save()

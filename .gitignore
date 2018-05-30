@@ -1,3 +1,9 @@
 
 *.pyc
 *.pyc
+/curriculum/migrations/*
+/problem/migrations/*
+/user/migrations/*
+!/curriculum/migrations/__init__.py
+!/problem/migrations/__init__.py
+!/user/migrations/__init__.py

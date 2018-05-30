@@ -23,7 +23,7 @@
                     <a href="{% url 'my_series' i.id %}" style="display:block;text-decoration:none;">
                   {% endif %}
                     <div class="thumbnail">
-                      <img src="/static/curriculum/image/qwe.jpg">
+                      <img src="{{ i.img.url }}">
                       <div class="caption">
                         <h3>{{ i.name }}</h3>
                           <span style="border:1px solid #ccc;">

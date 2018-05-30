@@ -23,8 +23,9 @@ class Series(models.Model):
     checked = models.BooleanField(default=False)
     introduce = models.CharField(max_length=200, blank=True, null=True, verbose_name='系列简介')
     tag = models.CharField(max_length=50, blank=True, null=True, verbose_name='输入关键字，使用空格分割')
-    img = models.FilePathField(blank=True,null=True)
+    img = models.ImageField(upload_to="img", verbose_name='系列封面图')
     path = models.FilePathField()
+
 
 
 # 用户上传的 所有课程
@@ -38,6 +39,7 @@ class UnauditedCurriculum(models.Model):
     attachment = models.FilePathField(blank=True, null=True, verbose_name='附件文件')
     checked = models.BooleanField(default=False)
     editor = models.ForeignKey(User, blank=True, null=True, related_name='UnauditedCurriculum_editor',on_delete=models.CASCADE)
+    introduce = models.CharField(max_length=100, blank=True, null=True, verbose_name='课程简介')
 
     class Meta:
         # permissions 会在数据库创建属于该模块的一个自定义权限
@@ -60,6 +62,7 @@ class Curriculum(models.Model):
     number = models.IntegerField(verbose_name='集数')
     attachment = models.FilePathField(blank=True,null=True, verbose_name='附件')
     img = models.FilePathField(blank=True, null=True)
+    introduce = models.CharField(max_length=100, blank=True, null=True, verbose_name='课程简介')
 
 
 # 评论（按系列）
