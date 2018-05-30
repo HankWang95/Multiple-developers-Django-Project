@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
+from .models import Series
 
 
 
@@ -13,4 +14,6 @@ def index_view(request):
                 who = "editors"
         except:
             pass
-    return render(request, 'home.html', {'who':who})
+    series_list = Series.objects.all()[:8]
+    return render(request, 'home.html', {'who':who,
+                                         'series_list': series_list})

@@ -1,7 +1,7 @@
 
 *.pyc
 *.pyc
-/.idea/
+/.idea/*
 /curriculum/migrations/*
 /problem/migrations/*
 /user/migrations/*

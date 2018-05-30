@@ -155,6 +155,12 @@
 
     </div>
 </div>
+课程列表
+{% for i in series_list %}
+{{ i.name }}
+{% endfor %}
+
+
 {% endblock %}
 {% block downjs %}
 <script>
