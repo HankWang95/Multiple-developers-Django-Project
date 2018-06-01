@@ -24,7 +24,7 @@
             <a href="{% url 'editor_cur_list' i.id %}">
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                     <div class="thumbnail">
-                      <img src="/static/curriculum/image/qwe.jpg">
+                      <img src="{{ i.img.url }}">
                       <div class="caption">
                         <h3>{{ i.name }}</h3>
                         <p>{{ i.information }}</p>

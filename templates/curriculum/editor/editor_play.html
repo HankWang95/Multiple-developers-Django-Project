@@ -21,7 +21,7 @@
             <a href="{% url 'editor_determine' status=1 cur_id=i.id %}">通过审核</a>
             <a href="{% url 'editor_determine' status=0 cur_id=i.id %}">未通过审核</a>
 
-            <button about="{{ i.id }}" id="but{{ i.id }}">{{ i.name }}</button>
+            <button id="but{{ forloop.counter }}" style="width: 210px" onclick="loadXMLDoc({{ i.id }})">{{ i.name }}</button>
             {% endfor %}
         </div>
     </div>

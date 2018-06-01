@@ -5,6 +5,7 @@ from .models import Series, UnauditedCurriculum
 
 # 上传视频文件表单
 class AddCurriculumForm(ModelForm):
+
     post_file = forms.FileField(label='请上传.mp4视频文件')
     post_attachment = forms.FileField(label='请上传附件', required=False)
 
