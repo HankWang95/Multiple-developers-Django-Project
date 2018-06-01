@@ -31,9 +31,8 @@ def add_curriculum_view(request, series):
     if request.method == 'POST':
         form = AddCurriculumForm(request.POST, request.FILES)
         file = request.FILES['post_file']
-        # if str(file.content_type) != "video/mp4":
-        #     print(str(file.content_type))
-        #     return redirect('add_curriculum',series.id)
+        if str(file.content_type) != "video/mp4":
+            return redirect('add_curriculum',series.id)
         if form.is_valid():
             series.checked = False
             series.save()

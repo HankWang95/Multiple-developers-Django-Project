@@ -4,7 +4,7 @@ from curriculum import index
 from . import register, user_info, log
 
 urlpatterns = [
-    path('login/', log.login_view,name='login'),
+    path('accounts/login/', log.login_view,name='login'),
     path('logout/', log.logout_view, name='logout'),
     path('', index.index_view, name='index'),
     path('register/', register.register_view, name='register'),
