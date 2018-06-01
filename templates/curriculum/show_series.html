@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}系列详情{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin: 0px 15px">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="thumbnail">
+                <img src="{{ series.img.url }}">
+            </div>
+        </div>
+        <div class="col-lg-5">
+
+            <h3>{{ series.name }}</h3>
+            <div style="width: 400px">
+                授课教师：
+                <span>
+                    {{ series.owner.username }}
+                </span>
+                <br/>
+                <p style="word-wrap:break-word; word-break:normal;">
+                    系列简介：{{ series.introduce }}
+                </p>
+                <div>
+                    <span style="border:1px solid #ccc;">
+                        系列标签：{{ series.tag }}
+                    </span>
+                </div>
+                选课人数：{{ joined_number }}
+            </div>
+            {% if joined %}
+            已加入学习&nbsp;&nbsp;
+            <a href="{% url 'my_series' series.id %}"><button>开始学习</button></a>
+
+            {% else %}
+            未加入学习&nbsp;&nbsp;
+            <a href="{% url 'join_series' series.id %}"><button>加入学习</button></a>
+
+            {% endif %}
+
+            {% for i in cur_list %}
+            <br/>
+            {{ i.name }}
+            <br/>
+            {{ i.introduce }}
+            {% endfor %}
+
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}
