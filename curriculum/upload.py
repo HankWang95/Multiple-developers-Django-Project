@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import AddCurriculumForm, AddSeriesForm
 from .models import Series
 from django.contrib.auth.decorators import permission_required
-from django.core.files.base import ContentFile
 import os
 # Create your views here.
 
