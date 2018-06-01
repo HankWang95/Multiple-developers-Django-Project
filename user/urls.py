@@ -1,5 +1,7 @@
 from django.urls import path
-from . import register, index, user_info, log
+
+from curriculum import index
+from . import register, user_info, log
 
 urlpatterns = [
     path('login/', log.login_view,name='login'),

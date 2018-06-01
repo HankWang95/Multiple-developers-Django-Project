@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class Problem(models.Model):
-    number = models.IntegerField(verbose_name='题目编号')
     series = models.IntegerField(verbose_name='series_id')
     name = models.CharField(verbose_name='题目名字', max_length=50)
     tag = models.CharField(verbose_name='题目类型', max_length=50, blank=True)
