@@ -23,8 +23,9 @@
                     系列简介：{{ series.introduce }}
                 </p>
                 <div>
+                    系列标签：
                     <span style="border:1px solid #ccc;">
-                        系列标签：{{ series.tag }}
+                        {{ series.tag }}
                     </span>
                 </div>
                 选课人数：{{ joined_number }}
@@ -38,17 +39,26 @@
             <a href="{% url 'join_series' series.id %}"><button>加入学习</button></a>
 
             {% endif %}
-
-            {% for i in cur_list %}
-            <br/>
-            {{ i.name }}
-            <br/>
-            {{ i.introduce }}
-            {% endfor %}
-
         </div>
     </div>
+        <div class="row">
+            <div class="col-lg-1">
 
+            </div>
+            <div class="col-lg-11">
+            {% for i in cur_list %}
+            <br/>
+                <button style="width: 280px;height:40px">
+                    <div style="width: 80px;float:left;">
+                        <span style="font-size: 20px;height: 20px;overflow: hidden;">{{ i.name }}</span>
+                    </div>
+                    <div style="width: 200px;">
+                        <span style="font-size: 15px;height: 15px;overflow: hidden;">{{ i.introduce }}</span>
+                    </div>
+                </button>
+            {% endfor %}
+            </div>
+        </div>
     </div>
 
 

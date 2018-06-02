@@ -40,14 +40,23 @@
         </div>
         <div class="col-lg-11">
             {% for i in list %}
-            <a href="{% url 'play' i.series.id %}"><button style="width: 180px;height:40px">{{ i.name }}{{i.introduce}}</button></a>
+            <a href="{% url 'play' i.series.id %}">
+                <button style="width: 280px;height:40px">
+                    <div style="width: 80px;float:left;">
+                        <span style="font-size: 20px;height: 20px;overflow: hidden;">{{ i.name }}</span>
+                    </div>
+                    <div style="width: 200px;">
+                        <span style="font-size: 15px;height: 15px;overflow: hidden;">{{ i.introduce }}</span>
+                    </div>
+                </button>
+            </a>
             <br/>
             {% endfor %}
             {% if add %}
-            <a href="{% url 'add_curriculum' series.id %}"><button style="width: 180px;height:40px">添加课程</button></a>
+            <a href="{% url 'add_curriculum' series.id %}"><button style="width: 280px;height:40px">添加课程</button></a>
             {% endif %}
             <br/>
-            <a href="{% url 'problem_list' series.id %}"><button style="width: 180px;height:40px">题目列表</button></a>
+            <a href="{% url 'problem_list' series.id %}"><button style="width: 280px;height:40px">题目列表</button></a>
         </div>
     </div>
 </div>

@@ -27,11 +27,11 @@
         #imgs img{
             display: block;
             width: 100%;
-            height: 500px;
+            height: 350px;
         }
         #container{
             width: 100%;
-            height: 500px;
+            height: 350px;
             margin: 0px;
             position: relative;
         }
@@ -152,14 +152,27 @@
 <div id="mov">
     <div id="move">
         <img src="/static/curriculum/image/006.png" style="width: 300px">
-
     </div>
 </div>
-课程列表
-{% for i in series_list %}
-{{ i.name }}
-{% endfor %}
-
+<div class="row">
+    <h3 style="margin: 0 42%">-----精品课程-----</h3>
+</div>
+<div class="row" style="margin: 0 50px">
+    {% for i in series_list %}
+        <a href="{% url 'show_series' i.id %}">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="thumbnail">
+              <img src="{{ i.img.url }}">
+              <div class="caption">
+                <h3>{{ i.name }}</h3>
+                <p>{{ i.information }}</p>
+                <p>{{ i.tag }}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+    {% endfor %}
+</div>
 
 {% endblock %}
 {% block downjs %}
