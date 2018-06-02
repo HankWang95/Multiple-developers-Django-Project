@@ -8,6 +8,7 @@
 {% endblock %}
 {% block content %}
     <div class="container-fluid" style="margin: 0px 15px">
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 30px">
@@ -22,29 +23,22 @@
 
               {% for i in series_list %}
             <a href="{% url 'editor_cur_list' i.id %}">
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <div class="thumbnail">
-                      <img src="{{ i.img.url }}">
-                      <div class="caption">
-                        <h3>{{ i.name }}</h3>
-                        <p>{{ i.information }}</p>
-                      </div>
-                    </div>
-                 </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"style="padding: 0px;width: 310px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;">
+                          <img src="{{ i.img.url }}" style="width: 300px;height:180px;margin: 5px 5px">
+                            <h3 style="margin: 5px;">{{ i.name }}</h3>
+                            <p style="margin: 0 10px;">{{ i.information }}</p>
+                            <p style="margin: 0 10px;">{{ i.tag }}</p>
+                  </div>
             </a>
             {% endfor %}
             {% else %}
             {% for i in series_list %}
                 <a href="{% url 'show_series' i.id %}">
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <div class="thumbnail">
-                      <img src="{{ i.img.url }}">
-                      <div class="caption">
-                        <h3>{{ i.name }}</h3>
-                        <p>{{ i.information }}</p>
-                        <p>{{ i.tag }}</p>
-                      </div>
-                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px 15px">
+                          <img src="{{ i.img.url }}" style="width: 270px;height:140px;margin: 5px 5px">
+                            <h3 style="margin: 5px;">{{ i.name }}</h3>
+                            <p style="margin: 0 10px;">{{ i.information }}</p>
+                            <p style="margin: 0 10px;">{{ i.tag }}</p>
                   </div>
                 </a>
             {% endfor %}
