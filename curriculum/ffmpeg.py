@@ -24,7 +24,7 @@ def video_compression(in_path, out_path, resolution):
     mp4_list = []
     for r, c, b in resolution:
         output = os.path.join(out_path, c + ".mp4")
-        cmd = """ffmpeg -y -i """ + in_path + """ -s """ + r + """ -vcodec libx264 -b:v """+b+"""k -bufsize 100k """ + output
+        cmd = """ffmpeg -y -i """ + in_path + """ -s """ + r + """ -vcodec libx264 -b:v """+b+"""k -bufsize 100k -strict -2 """ + output
         os.system(cmd)
         mp4_list.append((output, c))
     return mp4_list
