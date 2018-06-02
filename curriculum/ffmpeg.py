@@ -7,7 +7,7 @@ WATER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watermark
 # 加水印 参数：源视频路径、输出视频路径、水印文件路径
 def add_watermark(in_path, out_path, WATER_PATH):
     output = os.path.join(out_path, "added-watermark.mp4")
-    cmd = """ ffmpeg -y -i """ + in_path + """ -vf "movie=""" + WATER_PATH + """ [watermark];[in][watermark] overlay=10:10[out]" """ + output
+    cmd = """ ffmpeg -y -i """ + in_path + """ -vf "movie=""" + WATER_PATH + """ [watermark];[in][watermark] overlay=10:10[out]" -strict -2 """ + output
     os.system(cmd)
     return output
 
