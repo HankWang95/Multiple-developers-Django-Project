@@ -53,8 +53,6 @@ def handler(in_path, out_path):
 
     resolution = [("320x240", "240p", "100"), ("640x360", "360p", "300")]
     screenshots(in_path, srcenshots_path)
-    added_watermark = add_watermark(in_path, out_path, WATER_PATH)
-    mp4_list = video_compression(added_watermark, mp4_path, resolution)
-    oga_conversion_format(mp4_list, oga_path)
+    oga_conversion_format(video_compression(add_watermark(in_path, out_path, WATER_PATH), mp4_path, resolution), oga_path)
 
 
