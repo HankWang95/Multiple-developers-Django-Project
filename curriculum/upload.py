@@ -42,11 +42,14 @@ def add_curriculum_view(request, series):
             new_curriculum.path = handle_uploaded_file(request.FILES['post_file'],
                                                        file_name=form.cleaned_data['name']+".mp4",
                                                        series=series.name)
-            if request.FILES['post_attachment'] != "" or request.FILES['post_attachment'] is not None:
-                new_curriculum.attachment = handle_uploaded_file(
-                    request.FILES['post_attachment'],
-                    file_name=request.FILES['post_attachment'].name,
-                    series=series.name)
+            try:
+                if request.FILES['post_attachment'] != "" or request.FILES['post_attachment'] is not None:
+                    new_curriculum.attachment = handle_uploaded_file(
+                        request.FILES['post_attachment'],
+                        file_name=request.FILES['post_attachment'].name,
+                        series=series.name)
+            except:
+                pass
             new_curriculum.save()
             return redirect('my_series',series.id)
         return redirect('add_curriculum',series.id)

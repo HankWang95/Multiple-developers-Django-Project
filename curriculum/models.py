@@ -36,7 +36,7 @@ class UnauditedCurriculum(models.Model):
     path = models.FilePathField()
     series = models.ForeignKey(Series, on_delete=models.CASCADE, related_name='UnauditedCurriculum_series')
     number = models.IntegerField(verbose_name='集数')
-    attachment = models.FilePathField(blank=True, null=True, verbose_name='附件文件')
+    attachment = models.FilePathField(blank=True, null=True, verbose_name='附件文件', max_length=200)
     checked = models.BooleanField(default=False)
     editor = models.ForeignKey(User, blank=True, null=True, related_name='UnauditedCurriculum_editor',on_delete=models.CASCADE)
     introduce = models.CharField(max_length=100, blank=True, null=True, verbose_name='课程简介')
@@ -60,7 +60,7 @@ class Curriculum(models.Model):
     path = models.FilePathField()
     series = models.ForeignKey(Series, on_delete=models.CASCADE, related_name='Curriculum_series')
     number = models.IntegerField(verbose_name='集数')
-    attachment = models.FilePathField(blank=True,null=True, verbose_name='附件')
+    attachment = models.FilePathField(blank=True,null=True, verbose_name='附件', max_length=200)
     img = models.FilePathField(blank=True, null=True,max_length=200 )
     introduce = models.CharField(max_length=100, blank=True, null=True, verbose_name='课程简介')
 
