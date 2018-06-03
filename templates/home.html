@@ -157,10 +157,10 @@
 <div class="row" style="text-align: center;">
     <h3>-----精品课程-----</h3>
 </div>
-<div class="row" style="margin: 0 50px">
+<div class="row" style="margin: 0 15px">
     {% for i in series_list %}
         <a href="{% url 'show_series' i.id %}">
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px 15px">
               <img src="{{ i.img.url }}" style="width: 270px;height:180px;margin: 5px 5px">
                 <h3 style="margin: 5px;">{{ i.name }}</h3>
                 <p style="margin: 0 10px;">{{ i.information }}</p>

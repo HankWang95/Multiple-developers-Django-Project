@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 
 {% block title %}系列详情{% endblock %}
+ {% block js %}
+{% load static %}
 
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+<script>
+    function taf(){
+        $("#cent").removeClass("center");
+    }
+</script>
+{% endblock %}
 {% block content %}
-<div class="container-fluid" style="margin: 0px 15px">
+<div class="container-fluid" style="margin: 0px 15px" onload="taf">
     <div class="row">
-        <div class="col-lg-7">
-            <div class="thumbnail">
-                <img src="{{ series.img.url }}">
+        <div class="col-lg-8">
+            <div style="padding: 0px;width: 780px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;">
+                <img src="{{ series.img.url }}" style="width: 770px;height:450px;margin: 5px 5px">
             </div>
         </div>
-        <div class="col-lg-5">
-
+        <div class="col-lg-4">
             <h3>{{ series.name }}</h3>
             <div style="width: 400px">
                 授课教师：
@@ -46,16 +54,19 @@
 
             </div>
             <div class="col-lg-11">
+                <br/>
             {% for i in cur_list %}
-            <br/>
-                <button style="width: 280px;height:40px">
-                    <div style="width: 80px;float:left;">
-                        <span style="font-size: 20px;height: 20px;overflow: hidden;">{{ i.name }}</span>
-                    </div>
-                    <div style="width: 200px;">
-                        <span style="font-size: 15px;height: 15px;overflow: hidden;">{{ i.introduce }}</span>
-                    </div>
-                </button>
+                <div>
+                    <button style="width: 400px;height:40px">
+                        <div style="width: 90px;float:left;">
+                            <span style="display: block;font-size: 20px;width: 80px;height: 30px;overflow: hidden;">{{ i.name }}</span>
+                        </div>
+                        <div style="width: 280px;float:right;">
+                            <span style="display: block;width: 270px;height: 30px;overflow: hidden;">{{ i.introduce }}</span>
+                        </div>
+                    </button>
+                </div>
+
             {% endfor %}
             </div>
         </div>

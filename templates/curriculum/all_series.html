@@ -4,10 +4,50 @@
  {% block js %}
 {% load static %}
 
-<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+{% block style %}
+    <style type="text/css">
+        body{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+            background-image: url(/static/curriculum/image/000.jpg);
+            background-repeat: repeat;
+        }
+        td,th{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+        }
+        html,body,div,ul,
+        img{
+            padding: 0;
+            margin: 0;
+        }
+        .nav1{
+            height: 46px;
+            width: 100%;
+            line-height: 30px;
+            padding-left: 20px;
+
+            background-color: #0f0f0f;
+        }
+        section{
+            min-height: 600px;
+        }
+
+        .center{
+            width: 100%;
+
+        }
+        input{
+            width: 180px;
+            height: 35px;
+        }
+    </style>
+    {% endblock %}
 {% endblock %}
 {% block content %}
-    <div class="container-fluid" style="margin: 0px 15px">
+    <div id="wid" class="container-fluid" style="margin: 0px 15px">
 
         <div class="row">
             <div class="col-lg-12">
@@ -45,4 +85,7 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+{% block downjs %}
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
 {% endblock %}
