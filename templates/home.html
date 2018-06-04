@@ -132,7 +132,7 @@
     </style>
 {% endblock %}
 {% block content %}
-<div id="container" style="position: relative;top: -20px">
+<div id="container" style="position: relative;top: -20px;margin:0">
     <div class="row">
         <div class="col-lg-12">
             <div id="imgs" style="width: 100%" class="imaa ima1">
@@ -162,8 +162,10 @@
             </div>
         </div>
     </div>
-    <div class="row" style="text-align: center;">
-        <h3>-----精品课程-----</h3>
+    <div class="row" style="margin: 0 15px">
+        <div class="col-lg-12" style="text-align:center">
+            <h3>-----精品课程-----</h3>
+        </div>
     </div>
     <div class="row" style="margin: 0 15px">
         {% for i in series_list %}
