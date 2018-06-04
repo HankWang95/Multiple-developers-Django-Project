@@ -6,13 +6,23 @@
 
 {% block style %}
     <style type="text/css">
-        body{
-            font-family: Microsoft YaHei UI, sans-serif;
-            font-size: 16px;
-            line-height:30px;
-            background-image: url(/static/curriculum/image/000.jpg);
-            background-repeat: repeat;
-        }
+         {% if perms.curriculum.upload_file %}
+            body{
+                    font-family: Microsoft YaHei UI, sans-serif;
+                    font-size: 16px;
+                    line-height:30px;
+
+                    background-repeat: repeat;
+                }
+         {% else %}
+            body{
+                    font-family: Microsoft YaHei UI, sans-serif;
+                    font-size: 16px;
+                    line-height:30px;
+                    background-image: url(/static/curriculum/image/000.jpg);
+                    background-repeat: repeat;
+                }
+         {% endif %}
         td,th{
             font-family: Microsoft YaHei UI, sans-serif;
             font-size: 16px;
@@ -37,7 +47,6 @@
 
         .center{
             width: 100%;
-
         }
         input{
             width: 180px;
