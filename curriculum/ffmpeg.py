@@ -24,7 +24,7 @@ def video_compression(in_path, out_path, resolution):
     mp4_list = []
     for r, c, b in resolution:
         output = os.path.join(out_path, c + ".mp4")
-        cmd = """ffmpeg -y -i """ + in_path + """ -s """ + r + """ -vcodec libx264 -acodec aac -b:v """+b+"""k -bufsize 100k -strict -2 """ + output
+        cmd = """ffmpeg -y -i """ + in_path + """ -s """ + r + """ -vcodec libx264 -b:v """+b+"""k -bufsize 100k -strict -2 """ + output
         os.system(cmd)
         mp4_list.append((output, c))
     return mp4_list
@@ -51,7 +51,7 @@ def handler(in_path, out_path):
         else:
             os.makedirs(os.path.join(out_path, i))
 
-    resolution = [("320x240", "240p", "100"), ("640x360", "360p", "300")]
+    resolution = [("320x240", "240p", "200"), ("640x360", "360p", "400")]
     screenshots(in_path, srcenshots_path)
     oga_conversion_format(video_compression(add_watermark(in_path, out_path, WATER_PATH), mp4_path, resolution), oga_path)
 
