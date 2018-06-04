@@ -1,20 +1,70 @@
 {% extends "base.html" %}
 
 {% block title %}系列信息{% endblock %}
- {% block js %}
+{% block js %}
 {% load static %}
 
-<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+{% block style %}
+    <style type="text/css">
+         {% if perms.curriculum.upload_file %}
+            body{
+                    font-family: Microsoft YaHei UI, sans-serif;
+                    font-size: 16px;
+                    line-height:30px;
+
+                    background-repeat: repeat;
+                }
+         {% else %}
+            body{
+                    font-family: Microsoft YaHei UI, sans-serif;
+                    font-size: 16px;
+                    line-height:30px;
+                    background-image: url(/static/curriculum/image/000.jpg);
+                    background-repeat: repeat;
+                }
+         {% endif %}
+        td,th{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+        }
+        html,body,div,ul,
+        img{
+            padding: 0;
+            margin: 0;
+        }
+        .nav1{
+            height: 46px;
+            width: 100%;
+            line-height: 30px;
+            padding-left: 20px;
+
+            background-color: #0f0f0f;
+        }
+        section{
+            min-height: 600px;
+        }
+
+        .center{
+            width: 100%;
+
+        }
+        input{
+            width: 180px;
+            height: 35px;
+        }
+    </style>
+    {% endblock %}
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="margin: 0px 15px">
     <div class="row">
-        <div class="col-lg-7">
-            <div class="thumbnail">
-                <img src="{{ series.img.url }}">
+        <div class="col-lg-8">
+            <div style="padding: 0px;width: 780px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;">
+                <img src="{{ series.img.url }}" style="width: 770px;height:450px;margin: 5px 5px">
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <h3>{{ series.name }}</h3>
             <div style="width: 400px">
                 授课教师：
@@ -38,25 +88,29 @@
         <div class="col-lg-1">
 
         </div>
-        <div class="col-lg-11">
-            {% for i in list %}
-            <a href="{% url 'play' i.series.id %}">
-                <button style="width: 280px;height:40px">
-                    <div style="width: 80px;float:left;">
-                        <span style="font-size: 20px;height: 20px;overflow: hidden;">{{ i.name }}</span>
-                    </div>
-                    <div style="width: 200px;">
-                        <span style="font-size: 15px;height: 15px;overflow: hidden;">{{ i.introduce }}</span>
-                    </div>
-                </button>
-            </a>
+        <div class="col-lg-8">
             <br/>
+            {% for i in list %}
+            <div>
+                <a href="{% url 'play' i.series.id %}">
+                    <button style="width: 400px;height:40px">
+                        <div style="width: 90px;float:left;">
+                            <span style="display: block;font-size: 20px;width: 80px;height: 30px;overflow: hidden;">{{ i.name }}</span>
+                        </div>
+                        <div style="width: 280px;float:right;">
+                            <span style="display: block;width: 270px;height: 30px;overflow: hidden;">{{ i.introduce }}</span>
+                        </div>
+                    </button>
+                </a>
+            </div>
             {% endfor %}
             {% if add %}
             <a href="{% url 'add_curriculum' series.id %}"><button style="width: 280px;height:40px">添加课程</button></a>
             {% endif %}
-            <br/>
             <a href="{% url 'problem_list' series.id %}"><button style="width: 280px;height:40px">题目列表</button></a>
+        </div>
+        <div class="col-lg-3">
+            <a href="{% url 'show_series' series.id %}"><button style="width: 180px;height:40px">返回系列介绍</button></a>
         </div>
     </div>
 </div>

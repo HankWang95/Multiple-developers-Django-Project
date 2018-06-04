@@ -32,8 +32,7 @@
                     <li><a href="{% url 'login' %}">登陆</a></li>
                     <li><a href="{% url 'register' %}">注册</a></li>
                     {% else %}
-
-                    <li><a href="{% url 'mine' %}">您好，&nbsp;{{ request.user.username }}</a></li>
+                    <li><a href="{% url 'mine' %}">您好，{{ request.user.username }}</a></li>
                     <li><a href="{% url 'logout' %}">退出登陆</a></li>
                 {% endif %}
 			</ul>
