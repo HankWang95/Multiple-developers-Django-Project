@@ -36,6 +36,6 @@ class AddSeriesForm(ModelForm):
 
 # 评论表单
 class PostCommentForm(forms.Form):
-    body = forms.CharField(widget=forms.Textarea,max_length=140,label="输入留言内容")
+    body = forms.CharField(widget=forms.Textarea(attrs={'placeholder': '说一说你的想法与问题'}),max_length=140,label="输入留言内容")
 
 
