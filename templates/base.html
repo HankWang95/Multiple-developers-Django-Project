@@ -27,13 +27,7 @@
                     background-repeat: repeat;
                 }
          {% endif %}
-        body{
-            font-family: Microsoft YaHei UI, sans-serif;
-            font-size: 16px;
-            line-height:30px;
-            background-image: url(/static/curriculum/image/000.jpg);
-            background-repeat: repeat;
-        }
+
         td,th{
             font-family: Microsoft YaHei UI, sans-serif;
             font-size: 16px;
@@ -67,6 +61,9 @@
             height: 35px;
         }
     </style>
+    {% block intsty %}
+
+    {% endblock %}
     {% endblock %}
 </head>
 <body>
