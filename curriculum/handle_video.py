@@ -50,7 +50,7 @@ def handle_video(request):
     path_list = make_pending_video_path(video_list)
 
     for in_path, out_path, cur_id in path_list:
-        #handler(in_path, out_path)
+        handler(in_path, out_path)
         save_new_cur(cur_id, out_path)
 
     return HttpResponse("ok")
@@ -68,8 +68,8 @@ def save_new_cur(cur_id, out_path):
         editor=cur.editor,
         created_time=cur.created_time,
         path=out_path,
-        img=os.path.join(out_path,'screenshots/shots.jpg')
+        img=os.path.join(out_path,'screenshots/shots.jpg'),
+        introduce=cur.introduce
 
     )
     new_cur.save()
-    print(new_cur)
