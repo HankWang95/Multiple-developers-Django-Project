@@ -11,8 +11,7 @@
                     font-family: Microsoft YaHei UI, sans-serif;
                     font-size: 16px;
                     line-height:30px;
-
-                    background-repeat: repeat;
+                    background-color: #ccccff;
                 }
          {% else %}
             body{
@@ -56,8 +55,8 @@
     {% endblock %}
 {% endblock %}
 {% block content %}
-    <div id="wid" class="container-fluid" style="margin: 0px 15px">
-
+    <div class="container-fluid" style="margin: 0px 15px">
+        <br/>
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 30px">
@@ -72,7 +71,7 @@
 
               {% for i in series_list %}
             <a href="{% url 'editor_cur_list' i.id %}">
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px">
                           <img src="{{ i.img.url }}" style="width: 270px;height:140px;margin: 5px 5px">
                             <h3 style="margin: 5px;">{{ i.name }}</h3>
                             <p style="margin: 0 10px;">{{ i.information }}</p>

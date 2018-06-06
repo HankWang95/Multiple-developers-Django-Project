@@ -39,8 +39,10 @@ def xpath_select(html, xpath_list, img_xpath_list):
 
         # print(dir(link))
         links = selector.xpath(img_xpath_list[i])
+        print(links)
         for link in links:
-            obj['img'] = link.get('src')
+            print(link.get('source-data-lazy-img'))
+            obj['img'] = link.get('source-data-lazy-img')
         obj_list.append(obj)
     print(obj_list)
     return obj_list
@@ -53,8 +55,9 @@ def spider(request, id):
     for i in range(3):
         xpath = '//*[@id="J_goodsList"]/ul/li[' + str(i + 1) + ']/div/div[1]/a'
         xpath_list.append(xpath)
-        img_xpath = '//*[@id="J_goodsList"]/ul/li[' + str(i + 1) + ']/div/div[1]/a/img'
+        img_xpath = '/html/body/div[6]/div[2]/div[2]/div[1]/div/div[2]/ul/li[' + str(i + 1) + ']/div/div[1]/a/img'
         img_xpath_list.append(img_xpath)
+    print(xpath_list, img_xpath_list)
     url = jd_seach(keywords)
     html = req_url(url)
     obj_list = xpath_select(html, xpath_list, img_xpath_list)
