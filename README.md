@@ -67,5 +67,4 @@ uwsgi --ini uwsgi.ini
 
 ---
 
-sudo 密码： hankwang1214
 
