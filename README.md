@@ -11,7 +11,7 @@
 - teacher
 **密码均为1234qwer**
 
-## 不要在云端写代码
+## 在云端写代码记得提交
 
 - 开发版代码写在dev，测试无bug后再合并
 - 在本地push后去云端pull，让云端代码与github同步
@@ -91,47 +91,3 @@ vim  /etc/nginx/conf.d/django.conf
 uwsgi --ini uwsgi.ini 
 
 ---
-
-sudo 密码： hankwang1214
-=======
-
-## mysqlcilent
-yum search python3 | grep devel
-yum install ................python34-gobject-devel
-pip3 install mysqlcilent
-
-## project
-(爬虫依赖)
-pip3 install lxml 
-pip3 install requtest
-
-(mysql img字段依赖)
-pip3 insrall Pillow
-
-(链接数据库 执行表创建)
-python3 manage.py makemigrations
-python3 manage.py migtate
-
-(创建admin)——用户：admin 密码：1234qwer
-python3 manage.py createsuperuser
-
-进入admin界面->
-创建组：editors teachers students
-添加组权限：editors->editor  teachers->up_load
-
-
-## 部署
-yum install nginx
-sudo pip3 install uwsgi
-(测试 uwsgi)
-uwsgi --http :9000 --wsgi-file ./wsgi_server.py
-
-### 配置nginx 和uwsgi
-
-vim  /etc/nginx/conf.d/django.conf 
-启动 uwsgi
-uwsgi --ini uwsgi.ini 
-
-<!-- 
->>>>>>> fac3c23b4f9201db510803a2d0192d9c39057b08 -->
-
