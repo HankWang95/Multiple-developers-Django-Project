@@ -40,7 +40,6 @@ def make_pending_video_path(pending_cur_id_list):
             os.makedirs(outpath)
         path = (cur.path, outpath, cur_id)
         path_list.append(path)
-    print(path_list)
     return path_list
 
 

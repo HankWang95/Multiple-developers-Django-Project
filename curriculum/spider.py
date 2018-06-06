@@ -13,7 +13,6 @@ def jd_seach(keywords):
         else:
             keyword += i
     url = "https://search.jd.com/Search?keyword=" + keyword + "&enc=utf-8&"
-    print(url)
     return url
 
 
@@ -37,14 +36,10 @@ def xpath_select(html, xpath_list, img_xpath_list):
             obj['href'] = link.get('href')
             obj['title'] = link.get('title')
 
-        # print(dir(link))
         links = selector.xpath(img_xpath_list[i])
-        print(links)
         for link in links:
-            print(link.get('source-data-lazy-img'))
             obj['img'] = link.get('source-data-lazy-img')
         obj_list.append(obj)
-    print(obj_list)
     return obj_list
 
 
@@ -57,7 +52,6 @@ def spider(request, id):
         xpath_list.append(xpath)
         img_xpath = '/html/body/div[6]/div[2]/div[2]/div[1]/div/div[2]/ul/li[' + str(i + 1) + ']/div/div[1]/a/img'
         img_xpath_list.append(img_xpath)
-    print(xpath_list, img_xpath_list)
     url = jd_seach(keywords)
     html = req_url(url)
     obj_list = xpath_select(html, xpath_list, img_xpath_list)
