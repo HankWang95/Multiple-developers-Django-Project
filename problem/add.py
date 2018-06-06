@@ -8,7 +8,6 @@ def problem_add(request,series):
     if request.method == 'POST':
         form = ProblemForm(request.POST)
         if form.is_valid():
-            number = str(form.cleaned_data['number'])
             name = form.cleaned_data['name']
             tag = form.cleaned_data['tag']
             description = form.cleaned_data['description']
@@ -19,7 +18,6 @@ def problem_add(request,series):
             time = str(form.cleaned_data['time'])
             memory = str(form.cleaned_data['memory'])
             new_problem = Problem(
-                number = number,
                 name = name,
                 tag = tag,
                 description = description,

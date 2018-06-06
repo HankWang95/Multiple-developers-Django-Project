@@ -2,9 +2,12 @@ from django.contrib.auth.models import Group
 from .models import Series, CurriculumParticipation, Curriculum, UnauditedCurriculum
 # TODO: 加入审核后换 Curriculum库
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 
 
 # 我（参与）的系列课程列表 ： 老师与同学渲染不同界面
+@login_required
 def my_series_list_view(request):
     if Group.objects.get(user=request.user).name == 'teachers':
         add = True
@@ -20,6 +23,7 @@ def my_series_list_view(request):
 
 
 # 系列展示页面 老师用户:向属于自己的系列中添加视频
+@login_required
 def my_series_view(request, series):
     if Group.objects.get(user=request.user).name == 'teachers':
         series = Series.objects.get(id=series)
@@ -41,6 +45,7 @@ def my_series_view(request, series):
 
 
 # 参加 series
+@login_required
 def join_series_view(request, series):
     if Group.objects.get(user=request.user).name == 'teachers':
         return redirect('/')
@@ -57,6 +62,7 @@ def join_series_view(request, series):
 
 
 # "我的" 渲染界面
+@login_required
 def mine_view(request):
     who = ""
     if Group.objects.get(user=request.user).name == 'teachers':

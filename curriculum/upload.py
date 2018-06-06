@@ -18,7 +18,6 @@ def handle_uploaded_file(f, file_name, series):
     with open(os.path.join(outpath, file_name), 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-    print(outpath)
     return os.path.join(outpath, file_name)
 
 
@@ -32,9 +31,8 @@ def add_curriculum_view(request, series):
     if request.method == 'POST':
         form = AddCurriculumForm(request.POST, request.FILES)
         file = request.FILES['post_file']
-        # if str(file.content_type) != "video/mp4":
-        #     print(str(file.content_type))
-        #     return redirect('add_curriculum',series.id)
+        if str(file.content_type) != "video/mp4":
+            return redirect('add_curriculum',series.id)
         if form.is_valid():
             series.checked = False
             series.save()
@@ -44,15 +42,16 @@ def add_curriculum_view(request, series):
             new_curriculum.path = handle_uploaded_file(request.FILES['post_file'],
                                                        file_name=form.cleaned_data['name']+".mp4",
                                                        series=series.name)
-            if request.FILES['post_attachment'] != "" or request.FILES['post_attachment'] is not None:
-                new_curriculum.attachment = handle_uploaded_file(
-                    request.FILES['post_attachment'],
-                    file_name=request.FILES['post_attachment'].name,
-                    series=series.name)
+            try:
+                if request.FILES['post_attachment'] != "" or request.FILES['post_attachment'] is not None:
+                    new_curriculum.attachment = handle_uploaded_file(
+                        request.FILES['post_attachment'],
+                        file_name=request.FILES['post_attachment'].name,
+                        series=series.name)
+            except:
+                pass
             new_curriculum.save()
-            print("saved!")
             return redirect('my_series',series.id)
-        print(form)
         return redirect('add_curriculum',series.id)
     else:
         form = AddCurriculumForm()
@@ -64,11 +63,13 @@ def add_curriculum_view(request, series):
 @permission_required('curriculum.upload_file',login_url='/')
 def add_series_view(request):
     if request.method == 'POST':
-        form = AddSeriesForm(request.POST)
+        form = AddSeriesForm(request.POST, request.FILES or None)
+        # file_content = ContentFile(request.FILES['img'].read())
         if form.is_valid():
             new_series = form.save(commit=False)
             new_series.owner = request.user
             new_series.path = os.path.join(PASSED_DIR, form.cleaned_data['name'])
+            new_series.img = form.cleaned_data['img']
             if not os.path.exists(new_series.path):  # 判断是否存在文件或目录
                 os.makedirs(new_series.path)
             new_series.save()

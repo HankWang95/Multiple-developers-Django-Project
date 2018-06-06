@@ -11,8 +11,9 @@ PLAY_PATH = '/Users/wanghc/Desktop/dev-2.0/mysite/curriculum/upload_dir'
 # AJAX对象，用来返回一个播放器对象，具体的视频文件需要继续调用其他url
 # 参数：name：用来生成一个src（视频源url），传给play_file_obj（src）
 def play_ajax_obj(request, id):
+    cur = Curriculum.objects.get(pk=id)
     return render(request, 'curriculum/play_ajax_obj.html', {
-        'id': id,
+        'id': id, 'cur':cur
     })
 
 
@@ -64,4 +65,4 @@ def play_view(request, series):
     return render(request, 'curriculum/play.html', {'cur_list': cur_list,
                                                     'comment_form': comment_form,
                                                     'comment_list': comment_list,
-                                                    'series_id': s.id})
+                                                    'series': s})

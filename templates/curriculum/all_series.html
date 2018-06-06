@@ -4,10 +4,59 @@
  {% block js %}
 {% load static %}
 
-<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+{% block style %}
+    <style type="text/css">
+         {% if perms.curriculum.upload_file %}
+            body{
+                    font-family: Microsoft YaHei UI, sans-serif;
+                    font-size: 16px;
+                    line-height:30px;
+                    background-color: #ccccff;
+                }
+         {% else %}
+            body{
+                    font-family: Microsoft YaHei UI, sans-serif;
+                    font-size: 16px;
+                    line-height:30px;
+                    background-image: url(/static/curriculum/image/000.jpg);
+                    background-repeat: repeat;
+                }
+         {% endif %}
+        td,th{
+            font-family: Microsoft YaHei UI, sans-serif;
+            font-size: 16px;
+            line-height:30px;
+        }
+        html,body,div,ul,
+        img{
+            padding: 0;
+            margin: 0;
+        }
+        .nav1{
+            height: 46px;
+            width: 100%;
+            line-height: 30px;
+            padding-left: 20px;
+
+            background-color: #0f0f0f;
+        }
+        section{
+            min-height: 600px;
+        }
+
+        .center{
+            width: 100%;
+        }
+        input{
+            width: 180px;
+            height: 35px;
+        }
+    </style>
+    {% endblock %}
 {% endblock %}
 {% block content %}
     <div class="container-fluid" style="margin: 0px 15px">
+        <br/>
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 30px">
@@ -20,34 +69,32 @@
         <div class="row">
             {% if editor %}
 
+              {% for i in series_list %}
+            <a href="{% url 'editor_cur_list' i.id %}">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px">
+                          <img src="{{ i.img.url }}" style="width: 270px;height:140px;margin: 5px 5px">
+                            <h3 style="margin: 5px;">{{ i.name }}</h3>
+                            <p style="margin: 0 10px;">{{ i.information }}</p>
+                            <p style="margin: 0 10px;">{{ i.tag }}</p>
+                  </div>
+            </a>
+            {% endfor %}
+            {% else %}
             {% for i in series_list %}
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <div class="thumbnail">
-              <img src="/static/curriculum/image/qwe.jpg">
-              <div class="caption">
-                <h3>{{ i.name }}</h3>
-                <p>{{ i.information }}</p>
-                <p><a href="{% url 'editor_cur_list' i.id %}" class="btn btn-primary" role="button">Button</a></p>
-              </div>
-            </div>
-          </div>
+                <a href="{% url 'show_series' i.id %}">
+                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px">
+                          <img src="{{ i.img.url }}" style="width: 270px;height:140px;margin: 5px 5px">
+                            <h3 style="margin: 5px;">{{ i.name }}</h3>
+                            <p style="margin: 0 10px;">{{ i.information }}</p>
+                            <p style="margin: 0 10px;">{{ i.tag }}</p>
+                  </div>
+                </a>
 
             {% endfor %}
-
-            {% else %}
-        {% for i in series_list %}
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-            <div class="thumbnail">
-              <img src="/static/curriculum/image/qwe.jpg">
-              <div class="caption">
-                <h3>{{ i.name }}</h3>
-                <p>{{ i.information }}</p>
-                <p><a href="{% url 'show_series' i.id %}" class="btn btn-primary" role="button">Button</a></p>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
             {% endif %}
         </div>
     </div>
+{% endblock %}
+{% block downjs %}
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
 {% endblock %}

@@ -8,8 +8,8 @@
 <script src="{% static "curriculum/jquery-3.3.1.js" %}"></script>
 <style>
     textarea{
-        width: 750px;
-        height: 50px;
+        width: 650px;
+        height: 40px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         border-radius: 5px;
@@ -46,7 +46,7 @@ xmlhttp.send();
 }
 
 $(document).ready(function(){
-        var id={{ series_id }}
+        var id={{ series.id }}
         $("#jd_book").load('/jd_book/'+id);
 });
 

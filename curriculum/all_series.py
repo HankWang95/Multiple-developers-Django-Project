@@ -1,6 +1,6 @@
-from django.contrib.auth.models import Group
 from .models import Series, KindOfSeries, Curriculum, CurriculumParticipation
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 
 # 展示所有series
@@ -12,8 +12,11 @@ def show_all_series_view(request):
 
 
 # 展示series的信息，可以加入学习或进入学习
+@login_required
 def show_series_view(request, series):
     s = Series.objects.get(pk=series)
+    joined_number = len(CurriculumParticipation.objects.all().filter(series=s))
+    cur_list = Curriculum.objects.all().filter(series=s)
     joined = False
     try:
         series_list = CurriculumParticipation.objects.all().filter(student=request.user)
@@ -23,8 +26,11 @@ def show_series_view(request, series):
 
     except:
         joined = False
+
+
+
     return render(request, 'curriculum/show_series.html', {
-        'series': s, 'joined': joined
+        'series': s, 'joined': joined, 'joined_number' :joined_number, 'cur_list': cur_list
     })
 
 

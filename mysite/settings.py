@@ -25,7 +25,9 @@ SECRET_KEY = '#9uwraaq+27+fuhm$&l_l67$a)(i*a8!s5@!w(t6@cm93wz%l!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.21.0.7',
+'hankspace.cn','140.143.135.225']
+
 
 
 # Application definition
@@ -123,4 +125,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/Users/wanghc/Desktop/dev-2.0/mysite/curriculum/upload_dir'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media/')
+MEDIA_URL = os.path.join(BASE_DIR, 'templates/media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

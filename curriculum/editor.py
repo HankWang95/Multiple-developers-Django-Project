@@ -51,6 +51,8 @@ def determine_view(request, status, cur_id):
         return redirect('editor_cur_list', cur.series.id)
     else:
         new = UnPassCurriculum(curriculum=cur,editor=request.user)
+        cur.checked = True
+        cur.save()
         new.save()
         return redirect('editor_cur_list', cur.series.id)
 

@@ -3,7 +3,6 @@ from .models import Problem
 
 
 class ProblemForm(forms.Form):
-    number = forms.CharField(label='题目编号')
     name = forms.CharField(label='题目名字')
     tag = forms.CharField(label='题目类型')
     description = forms.CharField(label='题目描述')
@@ -21,8 +20,6 @@ class CodeForm(forms.Form):
     LANGUAGE_CHOICES= (
         ('C', 'c语言'),
         ('C++', 'c++语言'),
-        ('JAVA', 'Java'),
-        ('Python', 'python'),
     )
     lang_choice = forms.ChoiceField(label='语言选择', choices=LANGUAGE_CHOICES)
 

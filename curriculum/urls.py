@@ -1,5 +1,8 @@
 from django.urls import path
 from . import upload, play, comment, my_series, all_series, spider, editor, handle_video
+from django.conf import  settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     # 我的课程 url
@@ -35,4 +38,6 @@ urlpatterns = [
 
     path('handle_video/', handle_video.handle_video, name='handle_video'),
 
+
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
