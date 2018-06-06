@@ -65,6 +65,5 @@ vim  /etc/nginx/conf.d/django.conf
 启动 uwsgi
 uwsgi --ini uwsgi.ini 
 
----
 
 
