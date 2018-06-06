@@ -6,8 +6,8 @@ import os
 # Create your views here.
 
 
-UPLOAD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upload_dir')
-PASSED_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'passed_dir')
+UPLOAD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'media/upload_dir')
+PASSED_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'media/passed_dir')
 
 
 # 分块写入文件 return 文件存储的位置

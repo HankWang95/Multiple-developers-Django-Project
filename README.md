@@ -1,33 +1,71 @@
-# git 标准化
-- commit -m：（项目功能实现完全后提交）
-  - yyyy-mm-dd + update inofo 
-  - update info ：增删功能 欲实现功能 
-- tag：（里程碑式事件或近段时间不能继续开发时提交）
-  - yyyy-mm-dd + details info
-  - details info：至今为止所有功能概述 目录概述 url概述
-- 回溯：
-  - 当出现以下情况的时候考虑回溯
-     - 功能被搞乱。需求与实现不符。
+## python
+sudo yum install epel-release  
+sudo yum install python34  
 
-# user app
+## pip
+yum install python34-setuptools
+easy_install-3.4 pip
 
-##url
-- 注册
-- 登陆 登出
-- 详细信息 填写/查看
+## mysql:
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum install mysql-server
+chown -R root:root /var/lib/mysql
+service mysqld restart
 
-# 播放器界面的实现
+mysql -u root
+create user devIDENTIFIED BY "1234";
+create database web_dev character set utf8;
+grant all privileges on web_dev.* to dev@localhost identified by '1234';
 
-## 渲染界面（play）
+## django
+pip3 install django
 
-- 暂时属于静态html，通过调用AJAX对象来向后端要数据
+## git 
+yum install git 
 
-## AJAX播放器（play_ajax_obj）
+ssh-keygen -t rsa -C hankwang.whc@gmail.com
+then added to :
+github->repo->Deploy keys
 
-- 是一个html的对象、生成一个播放器
-- 传入一个name参数（在jquery中），生成一个src视频源url
+## mysqlcilent
+yum search python3 | grep devel
+yum install ................python34-gobject-devel
+pip3 install mysqlcilent
 
-## 文件对象（play_file_obj）
+## project
+(爬虫依赖)
+pip3 install lxml 
+pip3 install requtest
 
-- 传入一个src参数（通过AJAX传入），通过src找文件
-- 是一个FileResponse
+(mysql img字段依赖)
+pip3 insrall Pillow
+
+(链接数据库 执行表创建)
+python3 manage.py makemigrations
+python3 manage.py migtate
+
+(创建admin)——用户：admin 密码：1234qwer
+python3 manage.py createsuperuser
+
+进入admin界面->
+创建组：editors teachers students
+添加组权限：editors->editor  teachers->up_load
+
+
+## 部署
+yum install nginx
+sudo pip3 install uwsgi
+(测试 uwsgi)
+uwsgi --http :9000 --wsgi-file ./wsgi_server.py
+
+### 配置nginx 和uwsgi
+
+vim  /etc/nginx/conf.d/django.conf 
+启动 uwsgi
+uwsgi --ini uwsgi.ini 
+
+---
+
+sudo 密码： hankwang1214
+
