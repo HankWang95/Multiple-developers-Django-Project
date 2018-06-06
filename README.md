@@ -1,3 +1,27 @@
+
+# 注意事项
+
+## 云主机外网id 140.143.135.225
+
+## 测试用户
+
+- admin（管理员入口 /admin）
+- student
+- editor
+- teacher
+**密码均为1234qwer**
+
+## 不要在云端写代码
+
+- 开发版代码写在dev，测试无bug后再合并
+- 在本地push后去云端pull，让云端代码与github同步
+- 启动 uwsgi： uwsgi --ini uwsgi.ini 
+
+
+
+
+# 环境搭建
+
 ## python
 sudo yum install epel-release  
 sudo yum install python34  
@@ -108,6 +132,6 @@ vim  /etc/nginx/conf.d/django.conf
 启动 uwsgi
 uwsgi --ini uwsgi.ini 
 
-
->>>>>>> fac3c23b4f9201db510803a2d0192d9c39057b08
+<!-- 
+>>>>>>> fac3c23b4f9201db510803a2d0192d9c39057b08 -->
 
