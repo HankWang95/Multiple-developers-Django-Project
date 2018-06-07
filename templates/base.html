@@ -1,85 +1,119 @@
-<!DOCTYPE html>
-<html lang="zh_CN">
+<!doctype html>
+<html lang="zh">
 <head>
-    {% include 'head.html' %}
-    <title>{% block title %}欢迎光临 - hankwang{% endblock %}</title>
-    {% block js %}
-
-
-    {% endblock %}
-
-    <meta charset="UTF-8">
-    {% block style %}
-    <style type="text/css">
- {% if perms.curriculum.upload_file %}
-            body{
-                    font-family: Microsoft YaHei UI, sans-serif;
-                    font-size: 16px;
-                    line-height:30px;
-                    background-color: #ccccff;
-                }
-         {% else %}
-            body{
-                    font-family: Microsoft YaHei UI, sans-serif;
-                    font-size: 16px;
-                    line-height:30px;
-                    background-image: url(/static/curriculum/image/000.jpg);
-                    background-repeat: repeat;
-                }
-         {% endif %}
-
-        td,th{
-            font-family: Microsoft YaHei UI, sans-serif;
-            font-size: 16px;
-            line-height:30px;
-        }
-        html,body,div,ul,
-        img{
-            padding: 0;
-            margin: 0;
-        }
-
-        section{
-            min-height: 600px;
-        }
-
-        .center{
-            width: 100%;
-            display: -webkit-flex;
-           -webkit-justify-content: center;
-           -webkit-align-items: center;
-        }
-        input{
-            width: 180px;
-            height: 35px;
-        }
-    </style>
-    {% block intsty %}
-
-    {% endblock %}
-    {% endblock %}
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+    <title>{% block title %}{% endblock %}线上授课系统</title>
 </head>
 <body>
-<!--顶部导航栏-->
-    {% include 'navbar.html' %}
-<!--中间内容-->
-<div  id="cent" class="center">
-              {% block content %}
 
-              {% endblock %}
-</div>
-    <div style="height: 300px">
+    <div id="i_Container" class="{% block class %}{% endblock %}">
+    {% block container %}    
+   
+    {% endblock %}
     </div>
-    <!--下部版权-->
-<nav class="navbar navbar-default navbar-fixed-bottom" style="min-height: 30px;">
-  <div class="container-fluid">
-      <div class="row" style="text-align: center;">
-            <div class="col-lg-12">
-                <h4>版权所有</h4>
+    
+
+    <div class="modal fade" id="i_InfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">完善信息</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                        <form action="/info_fill/" method="POST" id="i_InfoFill">
+                          {% csrf_token %}
+                                <div class="form-group">
+                                  <label for="id_id_card">身份证</label>
+                                  <input type="text" class="form-control" id="id_id_card" name="id_card" aria-describedby="emailHelp" placeholder="身份证">
+                                </div>
+                                <div class="form-group">
+                                  <label for="id_real_name">真实姓名</label>
+                                  <input type="text" name="real_name" class="form-control" id="id_real_name" placeholder="真实姓名">
+                                </div>
+                                <div class="form-group">
+                                        <label for="id_phone_number">职业</label>
+                                        <input type="tel" name="phone_number" class="form-control" id="id_phone_number" placeholder="职业">
+                                      </div>
+                                <div class="form-group">
+                                        <label for="id_education">学历</label>
+                                        <select class="form-control" name="education" id="id_education">
+                                                <option value="university" selected>大学生</option>
+                                                <option value="junior">小学生</option>
+                                                <option value="senior">中学生</option>
+                                              </select>
+                                      </div>
+                                      <div class="form-group">
+                                            <label for="id_profession">职业</label>
+                                            <input type="password" name="profession" class="form-control" id="id_profession" placeholder="职业">
+                                          </div>
+                                
+                            </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                  <button type="submit" class="btn btn-primary" form="i_InfoFill">保存</button>
+                </div>
+              </div>
             </div>
-        </div>
-  </div>
-</nav>
+          </div>
+          <div class="modal fade" id="i_NewSeriesModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">新建课程</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                            <form action="" method="POST" id="i_NewSeries">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="id_name">课程名称</label>
+                                      <input type="text" class="form-control" id="id_name" name="name" aria-describedby="emailHelp" placeholder="课程名称">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="id_kind">类别</label>
+                                            <select class="form-control" id="id_kind" name="id_kind">
+                                                    <option>计算机</option>
+                                                    <option>英语</option>
+                                                  </select>
+                                          </div>
+                                          <div class="form-group">
+                                                <label for="id_introduce">简介</label>
+                                                <textarea class="form-control" id="id_introduce" name="introduce" rows="3" placeholder="课程简介"></textarea>
+                                              </div>
+                                              <div class="form-group">
+                                                    <label for="id_tag">标签</label>
+                                                    <input type="text" class="form-control" name="tag" id="id_tag" placeholder="标签">
+                                                  </div>
+                                                  <div class="form-group">
+                                                        <label for="id_img">封面</label>
+                                                        <input type="file" id="id_img" name="img" class="form-control-file" id="exampleFormControlFile1">
+                                                      </div>
+                                </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                      <button type="button" class="btn btn-primary" form="i_NewSeries">保存</button>
+                    </div>
+                  </div>
+                </div>
+              </div>      
+    {% block modal %}{% endblock %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+    <script>
+    $(function(){
+        $(".c_CourseList").height($(".c_Video").height());
+    })</script>
 </body>
-{% block downjs %}{% endblock %}
 </html>

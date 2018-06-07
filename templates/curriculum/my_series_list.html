@@ -1,104 +1,42 @@
-{% extends "base.html" %}
-
-{% block title %}我的系列课程{% endblock %}
-{% block js %}
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}首页_{% endblock %}
 
-<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
-{% block style %}
-    <style type="text/css">
-        {% if perms.curriculum.upload_file %}
-            body{
-                    font-family: Microsoft YaHei UI, sans-serif;
-                    font-size: 16px;
-                    line-height:30px;
-                    background-color: #ccccff;
-                }
-         {% else %}
-            body{
-                    font-family: Microsoft YaHei UI, sans-serif;
-                    font-size: 16px;
-                    line-height:30px;
-                    background-image: url(/static/curriculum/image/000.jpg);
-                    background-repeat: repeat;
-                }
-         {% endif %}
-        td,th{
-            font-family: Microsoft YaHei UI, sans-serif;
-            font-size: 16px;
-            line-height:30px;
-        }
-        html,body,div,ul,
-        img{
-            padding: 0;
-            margin: 0;
-        }
-        .nav1{
-            height: 46px;
-            width: 100%;
-            line-height: 30px;
-            padding-left: 20px;
-
-            background-color: #0f0f0f;
-        }
-        section{
-            min-height: 600px;
-        }
-
-        .center{
-            width: 100%;
-
-        }
-        input{
-            width: 180px;
-            height: 35px;
-        }
-    </style>
-    {% endblock %}
-{% endblock %}
-{% block content %}
-
-<div class="container-fluid" style="margin: 0px 15px">
-        <br/>
-    <div class="row">
-        <div class="col-lg-12">
-             {% if not add %}
-            <h3>我参加的课程</h3>
-            {% else %}
-             <h3>我发布的课程</h3>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row">
-        {% for i in list %}
-              {% if not add %}
-                <a href="{% url 'show_series' i.id %}">
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px">
-                      <img src="{{ i.img.url }}" style="width: 270px;height:140px;margin: 5px 5px">
-                        <h3 style="margin: 5px;">{{ i.name }}</h3>
-                        <p style="margin: 0 10px;">{{ i.information }}</p>
-                        <p style="margin: 0 10px;">{{ i.tag }}</p>
-                  </div>
-                </a>
-              {% else %}
-                <a href="{% url 'my_series' i.id %}">
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding: 0px;width: 280px;background-color: white;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 10px">
-                      <img src="{{ i.img.url }}" style="width: 270px;height:140px;margin: 5px 5px">
-                        <h3 style="margin: 5px;">{{ i.name }}</h3>
-                        <p style="margin: 0 10px;">{{ i.information }}</p>
-                        <p style="margin: 0 10px;">{{ i.tag }}</p>
-                  </div>
-                </a>
-              {% endif %}
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-3">
+                
+        <h4 class="mt-2 text-dark mx-4">{% if not add %} 我参加的课程{% else %}我发布的课程{% endif %}</h4>
+        <div class="cardlist d-flex flex-wrap c_SeriesCard">
+            {% for i in list %}
+            {% if not add %}
+            <a class="card  c_Card" href="{% url 'show_series' i.id %}">
+                <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.name }}</h5>
+                    <p class="card-text">{{ i.information }}</p>
+                </div>
+            </a>
+            {% else %} 
+            <a class="card  c_Card" href="{% url 'my_series' i.id %}">
+                    <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.name }}</h5>
+                        <p class="card-text">{{ i.information }}</p>
+                    </div>
+                </a>                   
+        {% endif %}
         {% endfor %}
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            {% if add %}
-            <a href="{% url 'add_series' %}"><button>新建系列课程</button></a>
-            {% endif %}
         </div>
-    </div>
+        <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-end  c_Page">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
 </div>
-
+{% include 'copyright.html' %}
 {% endblock %}

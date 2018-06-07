@@ -1,94 +1,48 @@
-{% extends "base.html" %}
-
-{% block title %}Create an account{% endblock %}
- {% block js %}
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}教师注册_{% endblock %}
+{% block class %}p-0{% endblock %}
+{% block container %}
+<div class="c_NavbarBorder d-flex flex-row justify-content-between">
+        <span class="c_NavbarBorderItem c_BgDarkGreen c_W25"></span>
+        <span class="c_NavbarBorderItem c_BgRed c_W8"></span>
+        <span class="c_NavbarBorderItem c_BgPurple c_W10"></span>
+        <span class="c_NavbarBorderItem c_BgYellow c_W12"></span>
+        <span class="c_NavbarBorderItem c_BgBlue c_W15"></span>
+        <span class="c_NavbarBorderItem c_BgGreen c_W30"></span>
+    </div>
+<div class="container d-flex flex-column mt-4 pt-5">
+<h4 class="text-center mb-4">注册</h4>
+<form class="border rounded c_LoginBox px-4 py-5 mx-auto" method="POST">
+        {% csrf_token %}
+<div class="btn-group w-100 mb-4" role="group" >
+    <a role="button" aria-pressed="true" href="" class="btn btn-info active w-50">我是老师</a>
+    <a role="button" aria-pressed="true" href="{% url 'register' %}" class="btn btn-info  w-50">我是学生</a>
+  </div>
 
-<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
-<style>
-  .incenter{
-         -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
-        border-radius: 20px;
-        background-color: white;
-        opacity: 0.9;
-        padding: 30px;
-            margin: auto;
-        position: relative;
-        top: -10px;
-        display:inline-block;
-          *display:inline;
-          *zoom:1;
-        }
-      td{
-        padding: 5px 5px;
-        }
-</style>
-{% endblock %}
-{% block content %}
+<div class="form-group">
+  <label for="id_username">手机号码</label>
+  <input type="text" class="form-control" id="id_username" aria-describedby="emailHelp" placeholder="输入用户名" name="username">
+</div>
 
-<div class="incenter">
-<h1>注册</h1>
-我是老师&nbsp;/&nbsp;
-    <a href="{% url 'register' %}">我是学生</a>
-<form action="" method="post">
-      {% csrf_token %}
-      <table>
-          <tr>
-              <td>
-                  请输入您的11位手机号码:
-              </td>
-              <td>
-                   {{ form.username }}
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  密码：
-              </td>
-              <td>
-                  {{ form.password1 }}
-              </td>
-          </tr>
-          <tr>
-              <td colspan="2">
-                    你的密码不能与其他个人信息太相似。<br>
-                    你的密码必须包含至少 8 个字符。<br>
-                    你的密码不能是大家都爱用的常见密码。<br>
-                    你的密码不能全部为数字。
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  确认密码：
-              </td>
-              <td>
-                  {{ form.password2 }}
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  请输入您的18位身份证号码:
-              </td>
-              <td>
-                  {{ form.id_card }}
-              </td>
-          </tr>
-          <tr>
-              <td>
-                  请输入您的真实姓名：
-              </td>
-              <td>
-                  {{ form.real_name }}
-              </td>
-          </tr>
-          <tr>
-              <td colspan="2" style="text-align: center">
-                  <input type="submit" value="注册" style="width:120px">
-              </td>
-          </tr>
-      </table>
-
-  </form>
+<div class="form-group">
+  <label for="id_password1">密码</label>
+  <input type="password" class="form-control" id="id_password1" data-trigger="hover" data-toggle="popover" title="您的密码需满足以下条件" data-html="true" data-content="1. 不能与其他个人信息太相似 <br />2. 必须包含至少 8 个字符<br />3. 不能是常见密码<br />4. 不能全部为数字"  placeholder="输入密码" name="password1">
+</div>
+<div class="form-group">
+    <label for="id_password2">确认密码</label>
+    <input type="password" class="form-control" id="id_password2" name="password2" data-trigger="hover" data-toggle="popover" title="您的密码需满足以下条件" data-html="true" data-content="1. 不能与其他个人信息太相似 <br />2. 必须包含至少 8 个字符<br />3. 不能是常见密码<br />4. 不能全部为数字"   placeholder="确认密码">
+  </div>
+  <div class="form-group">
+    <label for="id_real_name">姓名</label>
+    <input type="text" class="form-control" id="id_real_name" name="real_name" placeholder="真实姓名">
+  </div>
+  <div class="form-group">
+    <label for="id_id_card">身份证号</label>
+    <input type="password" class="form-control" id="id_id_card" name="id_card" placeholder="身份证号码">
+  </div>
+<button type="submit" class="btn btn-primary w-100 mt-4">注册</button>
+</form>
+<p class="c_LoginTip border rounded  px-3 py-2 mx-auto mt-3">已有账号？<a href="{% url 'login' %}">现在登录</a></p>
 </div>
 {% endblock %}

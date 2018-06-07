@@ -1,12 +1,45 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}首页_{% endblock %}
 
-{% block title %}提交题目{% endblock %}
-{% block content %}
-<div style="text-align: center">
-    <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">增加</button>
-    </form>
-</div>
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-3">
+        <div class="row c_Summary">
+            <div class="col-4 ">
+                <img src="{{ series.img.url }}" class="w-100" />
+            </div>
+            <div class="col ">
+                <h4>{{ series.name }}</h4>
+                <p>选课人数：{{ joined_number }} &nbsp;&nbsp;&nbsp;&nbsp; 授课老师：{{ series.owner.username }}</p>
+                <p>标签：<span class="badge c_Badge badge-warning">{{ series.tag }}</span></p>
+                <p></p>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="container c_Container mt-3 p-3">
+            <ul class="nav nav-tabs mb-4">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'my_series' series.id %}">章节列表</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active >题目列表</a>
+                    </li>
+                    
+                  </ul>
+            <div class="alert alert-warning" role="alert" id="i_ChapterList">
+                    {{ series.introduce }}
+                  </div>
+                  <ul class="list-group list-group-flush">
+                        {% for i in list %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">{{ i.id }}.{{ i.name }} <a class="badge badge-success badge-pill" href="{% url 'problem_show' i.id %}">查看</a></li>
+                        {% endfor %}
+                      </ul>
+                    
+
+    </div>
+{% include 'copyright.html' %}
 {% endblock %}

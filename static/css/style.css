@@ -1,0 +1,36 @@
+html,body { background-color: #f3f3f3; height: 100%;}
+#i_Container { padding-top: 64px; background-color: #f3f3f3; min-height: 100%; }
+
+.c_NavbarBorder { width: 100%; margin: 0;}
+.c_NavbarBorderItem { height: 0.5rem; }
+.c_BgBlue { background-color: #2196F3; }
+.c_BgGreen { background-color: #4CAF50; }
+.c_BgYellow { background-color: #FF9800; }
+.c_BgTeal { background-color: #00897B; }
+.c_BgRed { background-color: #f44336; }
+.c_BgPurple { background-color: #9C27B0; }
+.c_BgDarkGreen { background-color: #009688; }
+.c_BgLight { background: rgba(0,0,0,0.05);}
+.c_W15 { width: 15%; }
+.c_W25 { width: 25%; }
+.c_W30 { width: 30%; }
+.c_W10 { width: 10%; }
+.c_W12 { width: 12%; }
+.c_W8 { width: 8%; }
+.c_Card { border: none; border-radius: 0; padding: 0; margin: 1rem; width: 15rem;}
+.c_Card:hover { outline: 0.3rem solid #ececec; }
+.c_SeriesCard .c_Card { border: 0.05rem solid #f3f3f3; color: #333; text-decoration: none;}
+.c_Card  img { border-radius: 0; height: 8rem; }
+.c_Container { background-color: #fff; border-radius: 0.1rem; box-shadow: 0.01rem 0.01rem 0.05rem rgba(0,0,0,0.3); }
+.c_Filter { border-bottom: 0.1rem dashed #ececec; }
+.c_Filter a { color: #00897B;}
+.c_Page .page-link { color:#43A047; }
+.c_Badge { margin-right: 0.3rem; }
+.c_LoginTip,
+.c_LoginBox { background-color: #fff; width: 20rem;box-shadow: 0.02rem 0.02rem 0.05rem rgba(0,0,0,0.3); }
+.c_CourseList { width: 21rem; background: #222; overflow-y: auto; }
+.c_CourseList .list-group-item { border-radius: 0; background: transparent; border: 1px solid rgba(0,0,0,0.2);}
+.c_CourseList .list-group-item-action { color:rgba(255,255,255,0.6)}
+.c_CourseList .list-group-item.active { color: #fff; border-color: #00897B; }
+
+.copytight { text-align: center; }

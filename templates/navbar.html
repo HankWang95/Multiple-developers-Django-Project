@@ -1,43 +1,63 @@
-<!-- Static navbar -->
-
-<div class="container-fluid">
-    <div class="row">
-        <nav class="navbar navbar-default equinav" role="navigation" style="margin-bottom:0px">
-        <div class="col-lg-2">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <span class="navbar-brand">在线教育平台</span>
-                </div>
-		</div>
-
-		<div class="collapse navbar-collapse">
-            <div class="col-lg-7">
-                <ul class="nav navbar-nav">
-
-                    <li><a href="{% url 'index' %}">主页</a></li>
-                    <li><a href="{% url 'all_series' %}">课程</a></li>
-                    {% if who == 'editors' %}
-                    <li><a href="{% url 'editor_index' %}">审核员通道</a></li>
+<div class="c_Navbar fixed-top ">
+    <div class="navbar navbar-expand-lg {% if not request.user.is_active %} navbar-light  bg-light {% else %} {% if who == 'students' %}  navbar-dark  c_BgTeal {% else %} navbar-dark  bg-dark {% endif %}{% endif %} ">
+            <a class="navbar-brand" href="{% url 'index' %}">线上授课系统</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#i_NavbarToggler" aria-controls="i_NavbarToggler" aria-expanded="false" aria-label="导航">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="i_NavbarToggler">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active " href="{% url 'index' %}">首页</a>
+                    {% if not request.user.is_active %}
+                    
+                    {% if who == 'teachers' %}
+                    <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我发布的课程</a>
+                    {% elif who == 'students' %}
+                    <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我参加的课程</a>
                     {% endif %}
+                    
+                    {% if who == 'editors' %}
+                    <a class="nav-item nav-link" href="#">审核员通道</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                <ul class="nav c_Nav form-inline ">
+                        {% if not request.user.is_active %}
+                        <li class="nav-item">
+                            <a role="button" href="{% url 'login' %}" class="btn btn-success mr-2">登录</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" class="btn btn-primary"  href="{% url 'register' %}">注册</a>
+                        </li>
+                        {% else %}
+                        {% if who == 'teachers' %}
+                        <li class="nav-item">
+                                <button  type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#i_NewSeriesModel">+ 新建课程</button>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                                <div class="dropdown">
+                                    <button type="button" class="btn {% if who == 'students' %} btn-info {% else %} btn-dark {% endif %} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ request.user.username }}
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                      <button class="dropdown-item" type="button" data-toggle="modal" data-target="#i_InfoModel">个人信息</button>
+                                      <div class="dropdown-divider"></div>
+                                      <a role="button" class="dropdown-item" href="{% url 'logout' %}">退出登录</a>
+                                    </div>
+                                  </div>
+                        </li>
+                        {% endif %}
                 </ul>
             </div>
-            <div class="col-lg-3">
-                <ul class="nav navbar-nav">
-                    {% if not request.user.is_active %}
-                    <li><a href="{% url 'login' %}">登陆</a></li>
-                    <li><a href="{% url 'register' %}">注册</a></li>
-                    {% else %}
-                    <li><a href="{% url 'mine' %}">您好，{{ request.user.username }}</a></li>
-                    <li><a href="{% url 'logout' %}">退出登陆</a></li>
-                {% endif %}
-			</ul>
-            </div>
-		</div>
-
-	</nav>
     </div>
+    
+    <div class="c_NavbarBorder d-flex flex-row justify-content-between">
+            <span class="c_NavbarBorderItem c_BgGreen c_W30"></span>
+            <span class="c_NavbarBorderItem c_BgBlue c_W15"></span>
+            <span class="c_NavbarBorderItem c_BgYellow c_W12"></span>
+            <span class="c_NavbarBorderItem c_BgPurple c_W10"></span>
+            <span class="c_NavbarBorderItem c_BgRed c_W8"></span>
+            <span class="c_NavbarBorderItem c_BgDarkGreen c_W25"></span>
+        </div>
+    
 </div>

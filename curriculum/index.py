@@ -12,6 +12,8 @@ def index_view(request):
                 who = "teachers"
             elif Group.objects.get(user=request.user).name == 'editors':
                 who = "editors"
+            elif Group.objects.get(user=request.user).name == 'students':
+                who = "students"
         except:
             pass
     series_list = Series.objects.all()[:8]
