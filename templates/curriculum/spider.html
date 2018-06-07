@@ -1,13 +1,9 @@
 
 {% for obj in obj_list %}
-<a href="{{ obj.href }}">
-    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" style="padding: 0px;width: 140px;height: 60px;background-color: #80ffaa;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;margin: 3px">
-            <div style="float: left;margin: 5px">
-                <img src="{{ obj.img }}" style="width: 50px;height: 50px">
+      <div class="card w-100 mb-3">
+            <img class="card-img-top" src="{{ obj.img }}" alt="{{ obj.title }}">
+            <div class="card-body">
+              <a class="card-text" href="{{ obj.href }}">{{ obj.title }}</a>
             </div>
-          <div style="float: right;">
-            <p style="font-size: 12px;width: 80px;height: 60px;overflow: hidden;line-height: 15px">{{ obj.title }}</p>
           </div>
-      </div>
-</a>
 {% endfor %}
