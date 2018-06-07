@@ -6,24 +6,27 @@
 {% include 'navbar.html' %}
 <div id="i_VideoWrapper" class=" w-100 bg-dark">
         <div class="container d-flex flex-wrap py-4">
-                <div class="order-0 flex-grow-1 ">
-                        <video width="800" class="w-100 c_Video" controls="controls">
+                <div class="order-0 flex-grow-1 c_VideoWrapper d-flex justify-content-center">
+                        <video class="w-100 c_Video" controls="controls">
                                 <source src="" type="video/mp4">
                               Your browser does not support the video tag.
                               </video>
                 </div>
                 <div class="list-group order-1 c_CourseList">
                         {% for i in cur_list %}
-                                <a href="#" class="list-group-item list-group-item-action ">{{ i.name }}</a>
+                                <a href="#" data-id="{{ i.id }}" class="list-group-item list-group-item-action c_ChapterItem">{{ i.name }}</a>
                         {% endfor %}
                 </div>
         </div>
 </div>
 <div class="container  d-flex py-3">
-        <div class="order-lg-1 c_Container mr-3 ml-lg-3 p-4">
+        <div class="order-1 c_Container ml-3 p-4">
                 <h5>相关推荐</h5>
+                <div id="jd_book" class="c_JDCard">
+                获取中...
+                </div>
             </div>
-    <div class="order-lg-0 c_Container p-4 flex-grow-1">
+    <div class="order-0 c_Container p-4 flex-grow-1">
         <form action="post_comment/" method="POST">
             {% csrf_token %}
                 <div class="form-group">
@@ -41,4 +44,23 @@
     
 </div>
 {% include 'copyright.html' %}
+{% endblock %}
+{% block script %}
+<script>
+        $(function(){
+                $.get("/play_ajax_obj/"+$(".c_ChapterItem").eq(0).data("id"),function(res){
+                                $(".c_VideoWrapper").html(res);
+                });
+                $(".c_ChapterItem").click(function(){
+                        $.get("/play_ajax_obj/"+$(this).data("id"),function(res){
+                                $(".c_VideoWrapper").html(res);
+                        });
+                });
+                $.get("/jd_book/{{ series.id }}",function(res){
+                        $("#jd_book").html(res);
+                });
+                
+                
+        })
+</script>
 {% endblock %}
