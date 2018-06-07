@@ -56,7 +56,7 @@ def join_series_view(request, series):
         new.save()
         series.number_of_participants = series.number_of_participants + 1
         series.save()
-        return redirect('my_series',series.id)
+        return redirect('show_series',series.id)
     else:
         return redirect('my_series_list')
 
