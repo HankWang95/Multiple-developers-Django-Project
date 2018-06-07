@@ -117,8 +117,11 @@
     <script src="{% static 'js/popper.min.js' %}" ></script>
     <script src="{% static 'js/bootstrap.min.js' %}" ></script>
     <script>
-    $(function(){
-        $(".c_CourseList").height($(".c_Video").height());
-    })</script>
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+    </script>
+    {% block script %}{% endblock %}
+    
 </body>
 </html>
