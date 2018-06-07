@@ -21,7 +21,7 @@
                 <h4 class="mt-2 text-dark mx-4">全部课程</h4>
                 <div class="cardlist  d-flex flex-wrap c_SeriesCard">
                         {% for i in series_list %}
-                    <a class="card  c_Card" href="{% url 'my_series' i.id %}" >
+                    <a class="card  c_Card" href="{% if not editor %}{% url 'show_series' i.id %}{% else %}{% url 'editor_cur_list' i.id %}{% endif %}" >
                         <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ i.name }}</h5>
