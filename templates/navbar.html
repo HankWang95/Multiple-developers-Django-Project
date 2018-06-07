@@ -6,17 +6,16 @@
               </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="i_NavbarToggler">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active " href="{% url 'index' %}">首页</a>
-                    {% if not request.user.is_active %}
-                    
-                    {% if who == 'teachers' %}
-                    <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我发布的课程</a>
-                    {% elif who == 'students' %}
+                    <a class="nav-item nav-link" href="{% url 'index' %}">首页</a>
+                    <a class="nav-item nav-link" href="{% url 'all_series' %}">所有课程</a>
+                    {% if request.user.is_active %}
                     <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我参加的课程</a>
-                    {% endif %}
+                    {% if perms.curriculum.upload_file %}
+                    <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我发布的课程</a>
+                    {% elif perms.curriculum.editor %}
+                    <a class="nav-item nav-link" href="{% url 'editor_series_list' %}">待审课程</a>
+                    {% else %}
                     
-                    {% if who == 'editors' %}
-                    <a class="nav-item nav-link" href="#">审核员通道</a>
                     {% endif %}
                     {% endif %}
                 </div>
@@ -29,9 +28,13 @@
                             <a role="button" class="btn btn-primary"  href="{% url 'register' %}">注册</a>
                         </li>
                         {% else %}
-                        {% if who == 'teachers' %}
+                        {% if perms.curriculum.upload_file %}
                         <li class="nav-item">
                                 <button  type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#i_NewSeriesModel">+ 新建课程</button>
+                        </li>
+                        {% elif perms.curriculum.editor %}
+                        <li class="nav-item">
+                                <a  role="button" class="btn btn-success mr-3" href="{% url 'handle_video' %}">处理视频</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
