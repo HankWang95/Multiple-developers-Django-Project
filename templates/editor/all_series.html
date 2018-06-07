@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}首页_{% endblock %}
+
+{% block container %}
+{% include 'navbar.html' %}
+        <div class="container c_Container mt-5 p-3">
+                <h4 class="mt-2 text-dark mx-4">待审课程</h4>
+                <div class="cardlist  d-flex flex-wrap c_SeriesCard">
+                        {% for i in series_list %}
+                    <a class="card  c_Card" href="{% url 'editor_cur_list' i.id %}" >
+                        <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ i.name }}</h5>
+                            <p class="card-text">{{ i.information }}</p>
+                        </div>
+                    </a>
+                         {% endfor %}       
+                
+                </div>
+                <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end  c_Page">
+                          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                      </nav>
+        </div>
+{% include 'copyright.html' %}
+{% endblock %}
