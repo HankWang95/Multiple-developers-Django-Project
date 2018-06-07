@@ -18,14 +18,14 @@
                 </div>
             </a>
             {% else %} 
-            <a class="card  c_Card" href="{% url 'my_series' i.id %}">
+            <a class="card  c_Card" href="{% url 'show_series' i.id %}">
                     <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ i.name }}</h5>
                         <p class="card-text">{{ i.information }}</p>
                     </div>
                 </a>                   
-        {% endif %}
+            {% endif %}
         {% endfor %}
         </div>
         <nav aria-label="Page navigation">
