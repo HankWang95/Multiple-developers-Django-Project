@@ -9,14 +9,14 @@ import os
 @permission_required('curriculum.editor', login_url='/')
 def editor_index_view(request):
 
-        return render(request, 'curriculum/editor/editor.html')
+        return render(request, 'editor/editor.html')
 
 
 # 需要评判的系列列表
 @permission_required('curriculum.editor', login_url='/')
 def need_judge_series_view(request):
     series_list = Series.objects.all().filter(checked=False)
-    return render(request, 'curriculum/all_series.html', {'editor':True,
+    return render(request, 'editor/all_series.html', {'editor':True,
                                                           'series_list':series_list})
 
 
@@ -30,7 +30,7 @@ def need_judge_cur_view(request, series_id):
         s.save()
         return redirect('editor_series_list')
     else:
-        return render(request, 'curriculum/editor/editor_play.html', {'series':s,
+        return render(request, 'editor/editor_play.html', {'series':s,
                                                                         'cur_list':cur_list})
 
 

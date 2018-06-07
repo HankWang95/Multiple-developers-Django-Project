@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}审核员通道{% endblock %}
+ {% block js %}
+{% load static %}
+<style>
+    .bo{
+        width: 500px;
+        background-color: #1A9CC1;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        padding: 10px 30px;
+        text-align: center;
+        margin: 20px;
+    }
+    a{
+        color:#fff;
+    }
+</style>
+<script src="{% static 'curriculum/jquery-3.3.1.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div>
+        <a href="{% url 'editor_series_list' %}">
+            <div class="bo">
+                <div style="margin:auto;">
+                    待审核系列列表
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'handle_video' %}">
+            <div class="bo">
+                <div style="margin:auto;">
+                    处理视频
+                </div>
+            </div>
+        </a>
+    </div>
+{% endblock %}
