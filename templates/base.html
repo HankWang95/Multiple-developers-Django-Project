@@ -16,7 +16,7 @@
     {% endblock %}
     </div>
     
-
+    {% if request.user.is_active %}
     <div class="modal fade" id="i_InfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -63,7 +63,8 @@
               </div>
             </div>
           </div>
-          <div class="modal fade" id="i_NewSeriesModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        {% if perms.curriculum.upload_file %}
+        <div class="modal fade" id="i_NewSeriesModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -106,7 +107,11 @@
                     </div>
                   </div>
                 </div>
-              </div>      
+        </div>     
+        {% else %}
+        
+        {% endif %}
+    {% endif %} 
     {% block modal %}{% endblock %}
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}" ></script>
