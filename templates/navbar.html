@@ -1,5 +1,5 @@
 <div class="c_Navbar fixed-top ">
-    <div class="navbar navbar-expand-lg {% if not request.user.is_active %} navbar-light  bg-light {% else %} {% if who == 'students' %}  navbar-dark  c_BgTeal {% else %} navbar-dark  bg-dark {% endif %}{% endif %} ">
+    <div class="navbar navbar-expand-lg {% if not request.user.is_active %} navbar-light  bg-light {% else %} navbar-dark {% if perms.curriculum.upload_file %} bg-dark {% elif perms.curriculum.editor %} bg-primary {% else %}  c_BgTeal {% endif %}{% endif %} ">
             <a class="navbar-brand" href="{% url 'index' %}">线上授课系统</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#i_NavbarToggler" aria-controls="i_NavbarToggler" aria-expanded="false" aria-label="导航">
                 <span class="navbar-toggler-icon"></span>
@@ -9,13 +9,13 @@
                     <a class="nav-item nav-link" href="{% url 'index' %}">首页</a>
                     <a class="nav-item nav-link" href="{% url 'all_series' %}">所有课程</a>
                     {% if request.user.is_active %}
-                    <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我参加的课程</a>
+                    
                     {% if perms.curriculum.upload_file %}
                     <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我发布的课程</a>
                     {% elif perms.curriculum.editor %}
                     <a class="nav-item nav-link" href="{% url 'editor_series_list' %}">待审课程</a>
                     {% else %}
-                    
+                    <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我参加的课程</a>
                     {% endif %}
                     {% endif %}
                 </div>
@@ -39,7 +39,7 @@
                         {% endif %}
                         <li class="nav-item">
                                 <div class="dropdown">
-                                    <button type="button" class="btn {% if who == 'students' %} btn-info {% else %} btn-dark {% endif %} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" class="btn {% if perms.curriculum.upload_file %} btn-dark {% elif perms.curriculum.editor %} btn-primary {% else %}  btn-info {% endif %} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{ request.user.username }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
