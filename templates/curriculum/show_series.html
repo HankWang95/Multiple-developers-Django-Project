@@ -19,7 +19,7 @@
                     {% if perms.curriculum.upload_file  %}<button type="button" class="btn btn-info mr-3" type="button" data-toggle="modal" data-target="#i_NewChapterModel">添加章节</button><button type="button" class="btn btn-primary">添加习题</button> {% elif perms.curriculum.editor %} {%else %}<button type="button" class="btn btn-success mr-4" disabled >已加入学习</button>{% endif %}
                     </p>
                 {% else %}
-                <p><a role="button" class="btn btn-success mr-3" href="{% url 'join_series' series.id %}" >加入学习</a></p>
+                <p>{% if perms.curriculum.upload_file  %}<button type="button" class="btn btn-info mr-3" type="button" data-toggle="modal" data-target="#i_NewChapterModel">添加章节</button><button type="button" class="btn btn-primary">添加习题</button> {% elif perms.curriculum.editor %} {%else %}<a role="button" class="btn btn-success mr-3" href="{% url 'join_series' series.id %}" >加入学习</a>{% endif %}</p>
                 {% endif %}
                 
             </div>
