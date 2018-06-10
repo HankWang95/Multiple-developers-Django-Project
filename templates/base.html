@@ -74,17 +74,17 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                            <form action="" method="POST" id="i_NewSeries">
+                            <form action="/series/add/" method="POST" id="i_NewSeries">
                                 {% csrf_token %}
                                     <div class="form-group">
                                       <label for="id_name">课程名称</label>
-                                      <input type="text" class="form-control" id="id_name" name="name" aria-describedby="emailHelp" placeholder="课程名称">
+                                      <input type="text" class="form-control" id="id_name" name="name"  placeholder="课程名称">
                                     </div>
                                     <div class="form-group">
                                             <label for="id_kind">类别</label>
                                             <select class="form-control" id="id_kind" name="id_kind">
-                                                    <option>计算机</option>
-                                                    <option>英语</option>
+                                                    <option value="1">计算机</option>
+                                                    <option value="2">英语</option>
                                                   </select>
                                           </div>
                                           <div class="form-group">
@@ -97,13 +97,13 @@
                                                   </div>
                                                   <div class="form-group">
                                                         <label for="id_img">封面</label>
-                                                        <input type="file" id="id_img" name="img" class="form-control-file" id="exampleFormControlFile1">
+                                                        <input type="file" id="id_img" name="img" class="form-control-file">
                                                       </div>
                                 </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                      <button type="button" class="btn btn-primary" form="i_NewSeries">保存</button>
+                      <button type="submit" class="btn btn-primary" form="i_NewSeries">保存</button>
                     </div>
                   </div>
                 </div>
