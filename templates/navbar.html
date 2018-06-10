@@ -6,8 +6,8 @@
               </button>
             <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="i_NavbarToggler">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{% url 'index' %}">首页</a>
-                    <a class="nav-item nav-link" href="{% url 'all_series' %}">所有课程</a>
+                    
+                    
                     {% if request.user.is_active %}
                     
                     {% if perms.curriculum.upload_file %}
@@ -15,8 +15,13 @@
                     {% elif perms.curriculum.editor %}
                     <a class="nav-item nav-link" href="{% url 'editor_series_list' %}">待审课程</a>
                     {% else %}
+                    <a class="nav-item nav-link" href="{% url 'index' %}">首页</a>
+                    <a class="nav-item nav-link" href="{% url 'all_series' %}">所有课程</a>
                     <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我参加的课程</a>
                     {% endif %}
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url 'index' %}">首页</a>
+                    <a class="nav-item nav-link" href="{% url 'all_series' %}">所有课程</a>
                     {% endif %}
                 </div>
                 <ul class="nav c_Nav form-inline ">
