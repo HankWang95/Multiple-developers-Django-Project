@@ -4,17 +4,34 @@ from django.contrib.auth.models import Group
 from django.urls import reverse
 from .forms import ProblemForm, CodeForm
 from .models import Problem
+from curriculum.models import Series,CurriculumParticipation
 import os
 import json
+from django.contrib.auth.decorators import login_required
 
 CODE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_dir')
 
 
 # 题目列表
+@login_required
 def problem_list(request,series):
     problem_list = Problem.objects.all().filter(series=series)
     add = False
     user = request.user
+
+    joined_number = len(CurriculumParticipation.objects.all().filter(series=series))
+    current_series = Series.objects.get(pk=series)
+    joined = False
+    try:
+        series_list = CurriculumParticipation.objects.all().filter(student=request.user)
+        for i in series_list:
+            if current_series == i.series:
+                joined = True
+
+    except:
+        joined = False
+
+
 
     if Group.objects.get(user=user).name == 'teachers':
         add = True
@@ -24,7 +41,9 @@ def problem_list(request,series):
             list.append(obj.series)'''
     return render(request, 'problem/problem_list.html', {'list':problem_list,
                                                          'add': add,
-                                                         'series': series})
+                                                         'joined':joined,
+                                                         'joined_number':joined_number,
+                                                         'series': current_series})
 
 
 # 题目信息展示
