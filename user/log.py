@@ -12,7 +12,8 @@ def login_view(request):
             user = authenticate(username=loginform.cleaned_data['username'], password=loginform.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                return redirect('/')
+                # return redirect('/')
+                return redirect('my_series_list')
             else:
                 loginform = LoginForm()
                 return render(request, 'user/login.html', {'form': loginform})
