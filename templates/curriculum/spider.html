@@ -1,9 +1,9 @@
 
 {% for obj in obj_list %}
-      <div class="card w-100 mb-3">
+      <div class="card w-100 mx-3">
             <img class="card-img-top" src="{{ obj.img }}" alt="{{ obj.title }}">
             <div class="card-body">
-              <a class="card-text" href="{{ obj.href }}">{{ obj.title }}</a>
+              <a class="card-text" href="{{ obj.href }}">{{ obj.title|slice:"17" }}...</a>
             </div>
           </div>
 {% endfor %}
