@@ -19,14 +19,7 @@
                 </div>
         </div>
 </div>
-<div class="container  d-flex py-3">
-        <div class="order-1 c_Container ml-3 p-4">
-                <h5>相关推荐</h5>
-                <div id="jd_book" class="c_JDCard">
-                获取中...
-                </div>
-            </div>
-    <div class="order-0 c_Container p-4 flex-grow-1">
+<div class="container  c_Container p-4 my-3 w-100">
         <form action="post_comment/" method="POST">
             {% csrf_token %}
                 <div class="form-group">
@@ -40,9 +33,15 @@
                     <b class="ml-1 font-weight-bold">{{ i.name }}：</b>{{ i.body }}
             </p>
          {% endfor %}
-    </div>
-    
 </div>
+
+<div class="container c_Container p-4">
+        <h5>相关推荐</h5>
+        <div id="jd_book" class="c_JDCard d-flex w-100 ">
+        获取中...
+        </div>
+    </div>
+
 {% include 'copyright.html' %}
 {% endblock %}
 {% block script %}
