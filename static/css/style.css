@@ -36,4 +36,5 @@ html,body { background-color: #f3f3f3; height: 100%;}
 .c_Video { height: 32rem; }
 .c_JDCard { width: 16rem; }
 .c_JDCard a { color: #333; text-decoration: none; }
+.c_Schools img{ height: auto; }
 .copytight { text-align: center; }
