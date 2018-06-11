@@ -47,7 +47,7 @@ def spider(request, id):
     keywords = Series.objects.get(pk=id).tag
     xpath_list = []
     img_xpath_list = []
-    for i in range(3):
+    for i in range(5):
         xpath = '//*[@id="J_goodsList"]/ul/li[' + str(i + 1) + ']/div/div[1]/a'
         xpath_list.append(xpath)
         img_xpath = '/html/body/div[6]/div[2]/div[2]/div[1]/div/div[2]/ul/li[' + str(i + 1) + ']/div/div[1]/a/img'
