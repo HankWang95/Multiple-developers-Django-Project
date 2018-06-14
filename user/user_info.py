@@ -35,7 +35,7 @@ def info_fill_view(request):
             new = form.save(commit=False)
             new.user = request.user
             new.save()
-            return redirect('/')
+            return redirect('/user_info')
         else:
             return redirect('info_fill')
     else:
