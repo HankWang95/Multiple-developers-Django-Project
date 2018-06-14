@@ -13,7 +13,7 @@
                     {% if perms.curriculum.upload_file %}
                     <a class="nav-item nav-link" href="{% url 'my_series_list' %}">我发布的课程</a>
                     {% elif perms.curriculum.editor %}
-                    <a class="nav-item nav-link" href="{% url 'editor_series_list' %}">已审课程</a>
+                    <!-- <a class="nav-item nav-link" href="{% url 'editor_series_list' %}">已审课程</a> -->
                     <a class="nav-item nav-link" href="{% url 'editor_series_list' %}">待审课程</a>
                     {% else %}
                     <a class="nav-item nav-link" href="{% url 'index' %}">首页</a>
@@ -36,7 +36,7 @@
                         {% else %}
                         {% if perms.curriculum.upload_file %}
                         <li class="nav-item">
-                                <button  type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#i_NewSeriesModel">+ 新建课程</button>
+                                <a  role="button" class="btn btn-success mr-3" href="{% url 'add_series' %}" >+ 新建课程</a>
                         </li>
                         {% elif perms.curriculum.editor %}
                         <li class="nav-item">
@@ -49,8 +49,10 @@
                                         {{ request.user.username }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                      <button class="dropdown-item" type="button" data-toggle="modal" data-target="#i_InfoModel">个人信息</button>
+                                        {% if not perms.curriculum.editor %}
+                                      <a class="dropdown-item" role="button" href="{% url 'user_info' %}">个人信息</a>
                                       <div class="dropdown-divider"></div>
+                                      {% endif %}
                                       <a role="button" class="dropdown-item" href="{% url 'logout' %}">退出登录</a>
                                     </div>
                                   </div>
