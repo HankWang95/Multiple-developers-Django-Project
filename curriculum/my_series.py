@@ -12,7 +12,9 @@ def my_series_list_view(request):
     if Group.objects.get(user=request.user).name == 'teachers':
         add = True
         list = Series.objects.all().filter(owner=request.user)
-
+    elif Group.objects.get(user=request.user).name == 'editors':
+        add = False
+        list = UnauditedCurriculum.objects.all().filter(editor=None)
     else:
         add = False
         q = CurriculumParticipation.objects.all().filter(student=request.user)
