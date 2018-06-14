@@ -73,7 +73,7 @@ def add_series_view(request):
             if not os.path.exists(new_series.path):  # 判断是否存在文件或目录
                 os.makedirs(new_series.path)
             new_series.save()
-            return redirect('my_series', new_series.id)
+            return redirect('show_series', new_series.id)
         return redirect('my_series_list')
     else:
         form = AddSeriesForm()
