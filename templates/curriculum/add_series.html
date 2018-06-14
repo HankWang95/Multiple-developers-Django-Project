@@ -6,7 +6,7 @@
 {% include 'navbar.html' %}
 <div class="container c_Container mt-5 p-3">
         <h4 class="mt-2 text-dark mx-4">添加课程</h4>
-        <form method="POST" action="" class="mx-4 my-5">
+        <form method="POST" action="" class="mx-4 my-5" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
               <label for="id_name">课程名称</label>
