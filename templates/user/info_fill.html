@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}修改信息_{% endblock %}
+
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-3">
+        <h4 class="mt-2 text-dark mx-4">个人信息</h4>
+        <form method="POST" action="/info_fill/" class="mx-4 my-5">
+        {% csrf_token %}
+                        <div class="form-group">
+                                        <label for="id_id_card">身份证</label>
+                                        <input type="text" class="form-control" id="id_id_card" name="id_card"  placeholder="身份证">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="id_real_name">真实姓名</label>
+                                        <input type="text" name="real_name" class="form-control" id="id_real_name" placeholder="真实姓名">
+                                      </div>
+                                      <div class="form-group">
+                                              <label for="id_phone_number">手机号码</label>
+                                              <input type="tel" name="phone_number" class="form-control" id="id_phone_number" placeholder="手机号码">
+                                            </div>
+                                            {% if perms.curriculum.upload_file %}
+                                            <div class="form-group">
+                                                        <label for="id_education">学历</label>
+                                                        <select class="form-control" name="education" id="id_education">
+                                                                <option value="university" selected>本科</option>
+                                                                <option value="postgraduate">研究生</option>
+                                                                <option value="doctor">博士</option>
+                                                              </select>
+                                                      </div>
+                                            {% else %}
+                                            <div class="form-group">
+                                                        <label for="id_education">学历</label>
+                                                        <select class="form-control" name="education" id="id_education">
+                                                                <option value="university" selected>大学生</option>
+                                                                <option value="senior">中学生</option>
+                                                                <option value="junior">小学生</option>
+                                                              </select>
+                                                      </div>
+                                            {% endif %}
+                                            <div class="form-group">
+                                                  <label for="id_profession">职业</label>
+                                                  <input type="text" name="profession" class="form-control" id="id_profession" placeholder="职业">
+                                                </div>
+        
+        <button type="submit" class="btn btn-success mx-4 my-3" >保存</button>
+</form>
+</div>
+{% include 'copyright.html' %}
+{% endblock %}
