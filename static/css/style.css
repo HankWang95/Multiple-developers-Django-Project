@@ -30,6 +30,7 @@ html,body { background-color: #f3f3f3; height: 100%;}
 .c_LoginBox { background-color: #fff; width: 20rem;box-shadow: 0.02rem 0.02rem 0.05rem rgba(0,0,0,0.3); }
 .c_CourseList { width: 21rem; height: 32rem; background: #222; overflow-y: auto; }
 .c_CourseList .list-group-item { border-radius: 0; background: transparent; border: 1px solid rgba(0,0,0,0.2);}
+.c_CourseList .list-group-item a    { color: #fff; }
 .c_CourseList .list-group-item-action { color:rgba(255,255,255,0.6)}
 .c_CourseList .list-group-item.active { color: #fff; border-color: #00897B; }
 .c_VideoWrapper { height: 32rem; background-color: #111;}
@@ -37,4 +38,5 @@ html,body { background-color: #f3f3f3; height: 100%;}
 .c_JDCard { width: 16rem; }
 .c_JDCard a { color: #333; text-decoration: none; }
 .c_Schools img{ height: auto; }
+.c_Problem .col { border: 0.01rem solid #ccc; padding: 0.6rem; }
 .copytight { text-align: center; }
