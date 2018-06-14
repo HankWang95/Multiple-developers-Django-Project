@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}个人信息_{% endblock %}
+
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-3">
+                
+        <h4 class="mt-2 text-dark mx-4">个人信息</h4>
+        <div class="mx-4 my-5">
+        <p class="my-3">用户名：{{ user_info.user.username}}</p>
+        <p class="my-3">真实姓名：{{ user_info.real_name }}</p>
+        <p class="my-3">手机号码：{{ user_info.phone_number }}</p>
+        <p class="my-3">身份证号：{{ user_info.id_card }}</p>
+        <p class="my-3">学历：{{ user.education }}</p>
+        <p class="my-3">职业：{{ user.profession }}</p>
+        </div>
+        <a role="button" class="btn btn-success mx-4 my-3" href="{% url 'info_fill' %}">修改资料</a>
+        
+</div>
+{% include 'copyright.html' %}
+{% endblock %}
