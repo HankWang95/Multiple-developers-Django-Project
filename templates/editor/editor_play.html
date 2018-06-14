@@ -1,30 +1,44 @@
-{% extends "curriculum/editor/editor_script.html" %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}播放_{% endblock %}
 
-{% block content %}
-<div class="container-fluid" style="margin: 0px 15px;position: relative;top: -20px">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2>播放</h2>
+{% block container %}
+{% include 'navbar.html' %}
+<div id="i_VideoWrapper" class=" w-100 bg-dark">
+        <div class="container d-flex flex-wrap py-4">
+                <div class="order-0 flex-grow-1 c_VideoWrapper d-flex justify-content-center">
+                        <video class="w-100 c_Video" controls="controls">
+                                <source src="" type="video/mp4">
+                              Your browser does not support the video tag.
+                              </video>
+                </div>
+                <div class="list-group order-1 c_CourseList">
+                        {% for i in cur_list %}
+                            <div class="list-group-item list-group-item-action"><a href="#" class="c_ChapterItem" data-id="{{ i.id }}" >{{ i.name }}</a><span class="float-right"><a href="{% url 'editor_determine' status=1 cur_id=i.id %}" role="button" class="badge badge-success mx-2">通过</a><a href="{% url 'editor_determine' status=0 cur_id=i.id %}" role="button" class="badge badge-danger">驳回</a></span></div>    
+                        {% endfor %}
+                </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-10">
-            <div id="play">
-            <video width="1020" height="540" controls="controls">
-              <source src="" type="video/mp4">
-            Your browser does not support the video tag.
-            </video>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            {% for i in cur_list %}
-            <a href="{% url 'editor_determine' status=1 cur_id=i.id %}">通过审核</a>
-            <a href="{% url 'editor_determine' status=0 cur_id=i.id %}">未通过审核</a>
-
-            <button id="but{{ forloop.counter }}" style="width: 210px" onclick="loadXMLDoc({{ i.id }})">{{ i.name }}</button>
-            {% endfor %}
-        </div>
-    </div>
 </div>
-
+{% include 'copyright.html' %}
 {% endblock %}
+
+{% block script %}
+<script>
+        $(function(){
+                $.get("/play_ajax_obj/"+$(".c_ChapterItem").eq(0).data("id"),function(res){
+                                $(".c_VideoWrapper").html(res);
+                });
+                $(".c_ChapterItem").click(function(){
+                        $.get("/play_ajax_obj/"+$(this).data("id"),function(res){
+                                $(".c_VideoWrapper").html(res);
+                        });
+                });
+                $.get("/jd_book/{{ series.id }}",function(res){
+                        $("#jd_book").html(res);
+                });
+                
+                
+        })
+</script>
+{% endblock %}
+

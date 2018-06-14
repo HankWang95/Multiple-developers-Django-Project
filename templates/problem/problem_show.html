@@ -1,81 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ problem.name }}_{% endblock %}
 
-<div style="color: white">
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">题目名</h4>
-        </div>
-        <div class="bo">
-            {{ problem.id }}.   {{ problem.name }}
-        </div>
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-4 c_Problem w-100">
+    <h2 class="my-2 w-100 text-center">{{ problem.id }}.   {{ problem.name }}</h2>
+    <div class="row p-4">
+        <div class="col col-2">类型：</div>
+        <div class="col col-2">{{ problem.tag }}</div>
+        <div class="col col-2">时间限制：</div>
+        <div class="col col-2">{{ problem.time }}</div>
+        <div class="col col-2">内存限制：</div>
+        <div class="col col-2">{{ problem.memory }}</div>
+        <div class="w-100"></div>
+        <div class="col col-2">题目描述：</div>
+        <div class="col col-10">{{ problem.description }}</div>
+        <div class="w-100"></div>
+        <div class="col col-2">输入描述：</div>
+        <div class="col col-4">{{ problem.input_description }}</div>
+        <div class="col col-2">输出描述：</div>
+        <div class="col col-4">{{ problem.output_description }}</div>
+        <div class="w-100"></div>
+        <div class="col col-2">输入样例：</div>
+        <div class="col col-10">{{ problem.input_sample }}</div>
+        <div class="w-100"></div>
+        <div class="col col-2">输出样例：</div>
+        <div class="col col-10">{{ problem.output_sample }}</div>
     </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">题目类型</h4>
-        </div>
-        <div class="bo">
-            {{ problem.tag }}
-        </div>
+    <div class="w-100 text-center my-4">
+        <a href="{% url 'commit' problem.id %}" role="button" class="btn btn-success mr-4">编写代码</a>
+        <a href="{% url 'add_case' problem.id %}" role="button" class="btn btn-warning">添加测试样例</a>
     </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">题目描述</h4>
-        </div>
-        <div class="bo">
-            {{ problem.description }}
-        </div>
-    </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">输入描述</h4>
-        </div>
-        <div class="bo">
-            {{ problem.input_description }}
-        </div>
-    </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">输出描述</h4>
-        </div>
-        <div class="bo">
-            {{ problem.output_description }}
-        </div>
-    </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">输入样例</h4>
-        </div>
-        <div class="bo">
-            {{ problem.input_sample }}
-        </div>
-    </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">输出样例</h4>
-        </div>
-        <div class="bo">
-            {{ problem.output_sample }}
-        </div>
-    </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">时间限制</h4>
-        </div>
-        <div class="bo">
-            {{ problem.time }}
-        </div>
-    </div>
-    <div class="mar">
-        <div class="mar">
-            <h4 class="h">内存限制</h4>
-        </div>
-        <div class="bo">
-            {{ problem.memory }}
-        </div>
-    </div>
-    <div style="text-align: center">
-    <a href="{% url 'commit' problem.id %}"><button>编写代码</button></a>
-    <a href="{% url 'add_case' problem.id %}"><button>添加测试样例</button></a>
-</div>
 </div>
 
-
+{% include 'copyright.html' %}
+{% endblock %}

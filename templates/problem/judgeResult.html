@@ -1,27 +1,41 @@
 
-{% ifequal flag 'COMPILE_ERROR' %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ problem.name }}_{% endblock %}
+
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-4 w-100">
+        {% ifequal flag 'COMPILE_ERROR' %}
 
 
-{% for i in list %}
-{{ i }}
-<br>
-{% endfor %}
-{% endifequal %}
+        {% for i in list %}
+        {{ i }}
+        <br>
+        {% endfor %}
+        {% endifequal %}
+        
+        {% ifequal flag 'WRONG_ANSWER' %}
+        答案错误<br>
+        {% endifequal %}
+        
+        {% ifequal flag 'TIME_LIMIT_EXCEEDED' %}
+        超时<br>
+        {% endifequal %}
+        
+        {% ifequal flag 'MEMORY_LIMIT_EXCEEDED' %}
+        内存溢出<br>
+        {% endifequal %}
+        
+        {% ifequal flag 'ACCEPTED' %}
+        评判通过<br>
+        {% endifequal %}
+        
+</div>
 
-{% ifequal flag 'WRONG_ANSWER' %}
-答案错误<br>
-{% endifequal %}
+{% include 'copyright.html' %}
+{% endblock %}
 
-{% ifequal flag 'TIME_LIMIT_EXCEEDED' %}
-超时<br>
-{% endifequal %}
 
-{% ifequal flag 'MEMORY_LIMIT_EXCEEDED' %}
-内存溢出<br>
-{% endifequal %}
-
-{% ifequal flag 'ACCEPTED' %}
-评判通过<br>
-{% endifequal %}
 
 

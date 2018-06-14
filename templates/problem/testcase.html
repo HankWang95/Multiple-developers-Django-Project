@@ -1,16 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}添加样例_{% endblock %}
 
-    <div>
-        <form action="" method="post">
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-4 c_Problem w-100">
+    <form action="" method="POST" class="p-4">
             {% csrf_token %}
-            请输入输入样例：
-            <br/>
-            {{ form.input_case }}
-            <br/>
-            请输入输出样例：
-            <br/>
-            {{ form.output_case }}
-            <div>
-                <button type="submit">增加</button>
+            <div class="form-group">
+                    <label for="id_input_case">输入样例</label>
+                    <textarea name="input_case" class="form-control" id="id_input_case" rows="10" placeholder="请输入输入样例"></textarea>
             </div>
-        </form>
-    </div>
+            <div class="form-group">
+                    <label for="id_onput_case">输出样例</label>
+                    <textarea name="output_case" class="form-control" id="id_onput_case" rows="10" placeholder="请输入输出样例"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">增加样例</button>
+    </form>
+    
+</div>
+
+{% include 'copyright.html' %}
+{% endblock %}
