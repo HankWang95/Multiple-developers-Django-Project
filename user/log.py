@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth.models import Group
 from .forms import LoginForm
 from django.contrib.auth import login, authenticate
 
@@ -13,7 +14,10 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 # return redirect('/')
-                return redirect('my_series_list')
+                if Group.objects.get(user=request.user).name == 'editors':
+                    return redirect('editor_series_list')
+                else:
+                    return redirect('my_series_list')
             else:
                 loginform = LoginForm()
                 return render(request, 'user/login.html', {'form': loginform})
