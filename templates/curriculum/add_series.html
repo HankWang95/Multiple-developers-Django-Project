@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}添加课程_{% endblock %}
+
+{% block container %}
+{% include 'navbar.html' %}
+<div class="container c_Container mt-5 p-3">
+        <h4 class="mt-2 text-dark mx-4">添加课程</h4>
+        <form method="POST" action="" class="mx-4 my-5">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_name">课程名称</label>
+              <input type="text" class="form-control" id="id_name" name="name"  placeholder="课程名称">
+            </div>
+            <div class="form-group">
+                    <label for="id_kind">类别</label>
+                    <select class="form-control" id="id_kind" name="kind">
+                            <option value="1">计算机</option>
+                            <option value="2">英语</option>
+                          </select>
+                  </div>
+                  <div class="form-group">
+                        <label for="id_introduce">简介</label>
+                        <textarea class="form-control" id="id_introduce" name="introduce" rows="3" placeholder="课程简介"></textarea>
+                      </div>
+                      <div class="form-group">
+                            <label for="id_tag">标签</label>
+                            <input type="text" class="form-control" name="tag" id="id_tag" placeholder="标签">
+                          </div>
+                          <div class="form-group">
+                                <label for="id_img">封面</label>
+                                <input type="file" id="id_img" name="img" class="form-control-file">
+                              </div>
+        
+        <button type="submit" class="btn btn-success mx-4 my-3" >保存</button>
+</form>
+</div>
+{% include 'copyright.html' %}
+{% endblock %}
