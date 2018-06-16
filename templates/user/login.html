@@ -17,11 +17,11 @@
                     {% csrf_token %}
                     <div class="form-group">
                       <label for="id_username">用户名</label>
-                      <input type="text" class="form-control" id="id_username" aria-describedby="emailHelp" placeholder="输入用户名" name="username">
+                      <input type="text" class="form-control" id="id_username"  placeholder="输入用户名" name="username" required>
                     </div>
                     <div class="form-group">
                       <label for="id_password">密码</label>
-                      <input type="password" class="form-control" id="id_password" placeholder="输入密码" name="password">
+                      <input type="password" class="form-control" id="id_password" placeholder="输入密码" name="password" required>
                     </div>
                     
                     <button type="submit" class="btn btn-primary w-100 mt-4">登录</button>
