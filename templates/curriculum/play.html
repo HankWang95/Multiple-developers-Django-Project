@@ -14,7 +14,7 @@
                 </div>
                 <div class="list-group order-1 c_CourseList">
                         {% for i in cur_list %}
-                                <a href="#" data-id="{{ i.id }}" class="list-group-item list-group-item-action c_ChapterItem">{{ i.name }}</a>
+                                <a href="#" data-id="{{ i.id }}" class="list-group-item list-group-item-action c_ChapterItem">{{ i.name }}<span role="button" class="badge badge-success mx-2">切换画质</span></a>
                         {% endfor %}
                 </div>
         </div>
