@@ -1,6 +1,7 @@
 html,body { background-color: #f3f3f3; height: 100%;}
-#i_Container { padding-top: 64px; background-color: #f3f3f3; min-height: 100%; }
-
+#i_Container { padding-top: 64px;background-color: #f3f3f3; min-height: 100%; }
+body    {  }
+#i_Container .list-group { background-color: transparent; }
 .c_NavbarBorder { width: 100%; margin: 0;}
 .c_NavbarBorderItem { height: 0.5rem; }
 .c_BgBlue { background-color: #2196F3; }
@@ -21,7 +22,7 @@ html,body { background-color: #f3f3f3; height: 100%;}
 .c_Card:hover { outline: 0.3rem solid #ececec; }
 .c_SeriesCard .c_Card { border: 0.05rem solid #f3f3f3; color: #333; text-decoration: none;}
 .c_Card  img { border-radius: 0; height: 8rem; }
-.c_Container { background-color: #fff; border-radius: 0.1rem; box-shadow: 0.01rem 0.01rem 0.05rem rgba(0,0,0,0.3); }
+.c_Container { background-color: #fff; border-radius: 0.1rem; box-shadow: 0.01rem 0.01rem 0.05rem rgba(0,0,0,0.3); background: url(../images/bg2.png) repeat 0 0; }
 .c_Filter { border-bottom: 0.1rem dashed #ececec; }
 .c_Filter a { color: #00897B;}
 .c_Page .page-link { color:#43A047; }
