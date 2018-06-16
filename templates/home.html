@@ -50,9 +50,9 @@
             <div class="d-flex flex-wrap c_SeriesCard">
                 {% for i in series_list %}
                 <a class="card c_Card " href="{% url 'show_series' i.id %}">
-                    <img class="card-img-top" src="{{ i.img.url }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ i.img.url }}" alt="{{ i.name }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ i.name }}</h5>
+                        <h5 class="card-title" title="{{ i.name }}">{{ i.name }}</h5>
                         <p class="card-text">{{ i.information }}</p>
                     </div>
                 </a>
